@@ -67,46 +67,45 @@
 % Почему: Пункт 2.9.2 Требований по оформлению пояснительной записки.
 \usepackage[bottom]{footmisc}
 
-
-% Зачем: Переопределяем стандартную нумерацию, т.к. в отчете будут только section и т.д. в терминологии TeX
-\makeatletter
-\renewcommand{\thesection}{\arabic{section}}
-\makeatother
-
-
-% Зачем: Пункты (в терминологии требований) в терминологии TeX subsubsection должны нумероваться
-% Почему: Пункт 2.2.3 Требований по оформлению пояснительной записки.
-\setcounter{secnumdepth}{3}
-
-
 % Зачем: Настраивает отступ между таблицей с содержанимем и словом СОДЕРЖАНИЕ
 % Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
 \usepackage{tocloft}
 \setlength{\cftbeforetoctitleskip}{-1em}
 \setlength{\cftaftertoctitleskip}{1em}
+\setlength{\cftbeforechapskip}{0pt}
+\setlength{\cftbeforepartskip}{0pt}
 
+\renewcommand{\cftchappresnum}{ГЛАВА }
+\renewcommand{\cftchapnumwidth}{5em}
 
-% Зачем: Определяет отступы слева для записей в таблице содержания.
-% Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
-\makeatletter
-\renewcommand{\l@section}{\@dottedtocline{1}{0.5em}{1.2em}}
-\newcommand{\l@appendix}{\@dottedtocline{2}{0.5em}{1.2em}}
-\renewcommand{\l@subsection}{\@dottedtocline{2}{1.7em}{2.0em}}
-\makeatother
+\renewcommand{\cftchapfont}{\normalfont}
+\renewcommand{\cftchappagefont}{\normalfont}
 
+\renewcommand{\cftpartfont}{\normalfont}
+\renewcommand{\cftpartpagefont}{\normalfont}
+
+\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+
+\renewcommand\contentsname{Оглавление}
+\renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeTextUppercase}
+\renewcommand{\cftaftertoctitle}{\hfil\hfill}
+
+\setcounter{secnumdepth}{3}
 
 % Зачем: Работа с колонтитулами
 \usepackage{fancyhdr} % пакет для установки колонтитулов
 
 \pagestyle{fancy}
-\fancyhf{}
-\fancyfoot[R]{\cfoot\thepage}
+\fancyhf{}\fancyfoot[R]{\cfoot\thepage}
 
 \renewcommand{\footrulewidth}{0pt} % убрать разделительную линию внизу страницы
 \renewcommand{\headrulewidth}{0pt} % убрать разделительную линию вверху страницы
 
 % Зачем: Номер страницы проставляют в центре нижней части листа без точки в конце
 % Почему: Пункт 4.4.1 Положения о магистерской диссертации
+% TODO: у начала главы нумерация пропадает
 \fancypagestyle{plain}{
     \fancyhf{}\fancyfoot[R]{\cfoot\thepage}
 }
@@ -117,22 +116,35 @@
 \renewcommand\large{\@setfontsize\large{15pt}{18}} % м.б. 18пт baselineskip некорректен
 \makeatother
 
-% Зачем: Задает стиль заголовков глав жирным шрифтом, прописными буквами, без точки в конце
+% Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
-\renewcommand\section{%
-    \clearpage\@startsection{section}{1}%
+\renewcommand\part{%
+  \clearpage\@startsection{part}{-1}%
     {\fivecharsapprox}%
     {-1em \@plus-1ex \@minus-.2ex}%
     {1em \@plus.2ex}%
-    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}}
+    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
+    }
 \makeatother
+
+% Зачем: Задает стиль заголовков глав жирным шрифтом, прописными буквами, без точки в конце
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\large\centering\bfseries}
+{\MakeTextUppercase\chaptertitlename\ \thechapter}
+{.5em}
+{\MakeTextUppercase}
+
+\titlespacing*{\chapter}
+  {0pt}{0pt}{1em}
 
 % Зачем: Задает стиль заголовков разделов
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
-\renewcommand\subsection{%
-  \@startsection{subsection}{2}%
+\renewcommand\section{%
+  \@startsection{section}{1}%
     {\fivecharsapprox}%
     {-1em \@plus-1ex \@minus-.2ex}%
     {1em \@plus.2ex}%
@@ -142,38 +154,13 @@
 % Зачем: Задает стиль заголовков подразделов
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
-\renewcommand\subsubsection{
-  \@startsection{subsubsection}{3}%
+\renewcommand\subsection{
+  \@startsection{subsection}{2}%
     {\fivecharsapprox}%
     {-1em \@plus-1ex \@minus-.2ex}%
     {1em \@plus.2ex}%
     {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}
 \makeatother
-
-% Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\makeatletter
-\newcommand\sectioncentered{%
-  \clearpage\@startsection{section}{1}%
-    {\z@}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
-    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
-    }
-\makeatother
-
-% Приложения к записке
-\makeatletter
-\newcommand\sectionadd{%
-  \clearpage\@startsection{subsection}{1}%
-    {\z@}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1sp \@plus.1em}%
-    {\centering\hyphenpenalty=10000\normalfont\normalsize}%
-    }
-\makeatother
-
-
 
 % Зачем: Задает стиль библиографии
 % Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
@@ -362,8 +349,6 @@
 \usepackage{totcount}
 \regtotcounter{section}
 
-\usepackage{etoolbox}
-
 \newcounter{totfigures}
 \newcounter{tottables}
 \newcounter{totreferences}
@@ -444,6 +429,8 @@
 % Зачем: Удаляет точки после нумерации section и прочих
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \AtBeginDocument{%
+   \def\postpart{\@aftersepkern}%
+   \def\postchapter{\@aftersepkern}%
    \def\postsection{\@aftersepkern}%
    \def\postsubsection{\@aftersepkern}%
    \def\postsubsubsection{\@aftersepkern}%
