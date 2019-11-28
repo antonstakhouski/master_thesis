@@ -13,7 +13,6 @@ $(MASTER_THESIS_PDF).pdf: *.tex
 	$(BIBTEX) $(MASTER_THESIS_PDF).aux
 	$(XELATEX) $(MASTER_THESIS_PDF)
 	$(XELATEX) $(MASTER_THESIS_PDF)
-	# cp ${MASTER_THESIS_PDF}.pdf example/
 
 cleanall: clean
 	$(RM)  *.pdf

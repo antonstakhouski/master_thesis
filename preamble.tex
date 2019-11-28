@@ -2,7 +2,6 @@
 % Зачем: Определяет класс документа (То, как будет выглядеть документ)
 % Примечание: параметр draft помечает строки, вышедшие за границы страницы, прямоугольником, в фильной версии его нужно удалить.
 \documentclass[a4paper,14pt,russian,oneside,final]{extreport}
-%\documentclass[a4paper,14pt,russian,oneside,final]{report}
 
 % Для мультиязыковой поддержки
 \usepackage{polyglossia}
@@ -39,21 +38,17 @@
 
 
 % Зачем: Настраивает отступы от границ страницы.
-% Почему: Пункт 2.1.2 Требований по оформлению пояснительной записки.
-\usepackage[left=3cm,top=2.0cm,right=1.5cm,bottom=2.7cm]{geometry}
+% Почему: Пункт 4.2. Положения о магистерской диссертации
+\usepackage[left=3cm,top=2.0cm,right=1.0cm,bottom=2.0cm]{geometry}
 
-
-% Зачем: Настраивает межстрочный интервал, для размещения 40 +/- 3 строки текста на странице.
-% Почему: Пункт 2.1.1 Требований по оформлению пояснительной записки.
-\usepackage[nodisplayskipstretch]{setspace}
 % Зачем: межстрочный интервал в 18pt
+% Почему: Пункт 4.2. Положения о магистерской диссертации
 \usepackage{leading}
 \leading{18pt}
 
 % Зачем: Отключает использование изменяемых межсловных пробелов.
 % Почему: Так не принято делать в текстах на русском языке.
 \frenchspacing
-
 
 % Зачем: Сброс счетчика сносок для каждой страницы
 % Примечание: в "Требованиях по оформлению пояснительной записки" не указано, как нужно делать, но в других БГУИРовских докуметах рекомендуется нумерация отдельная для каждой страницы
@@ -102,74 +97,78 @@
 
 % Зачем: Работа с колонтитулами
 \usepackage{fancyhdr} % пакет для установки колонтитулов
-\pagestyle{fancy} % смена стиля оформления страниц
 
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[R]{\cfoot\thepage}
 
-% Зачем: Нумерация страниц располагается справа снизу страницы
-% Почему: Пункт 2.2.8 Требований по оформлению пояснительной записки.
-\fancyhf{} % очистка текущих значений
-\fancyfoot[R]{\thepage} % установка верхнего колонтитула
 \renewcommand{\footrulewidth}{0pt} % убрать разделительную линию внизу страницы
 \renewcommand{\headrulewidth}{0pt} % убрать разделительную линию вверху страницы
+
+% Зачем: Номер страницы проставляют в центре нижней части листа без точки в конце
+% Почему: Пункт 4.4.1 Положения о магистерской диссертации
 \fancypagestyle{plain}{
-    \fancyhf{}
-    \rfoot{\thepage}}
+    \fancyhf{}\fancyfoot[R]{\cfoot\thepage}
+}
 
-
-% Зачем: Задает стиль заголовков раздела жирным шрифтом, прописными буквами, без точки в конце
-% Почему: Пункты 2.1.1, 2.2.5, 2.2.6 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
+% Зачем: Установить для large размер в 15пт
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
-\renewcommand\section{%
-  \clearpage\@startsection {section}{1}%
-    {\fivecharsapprox}%
-    {-1em \@plus -1ex \@minus -.2ex}%
-    {1em \@plus .2ex}%
-    {\raggedright\hyphenpenalty=10000\normalfont\normalsize\MakeUppercase}}
+\renewcommand\large{\@setfontsize\large{15pt}{18}} % м.б. 18пт baselineskip некорректен
 \makeatother
 
-% Зачем: Задает стиль заголовков подразделов
-% Почему: Пункты 2.1.1, 2.2.5 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
+% Зачем: Задает стиль заголовков глав жирным шрифтом, прописными буквами, без точки в конце
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\makeatletter
+\renewcommand\section{%
+    \clearpage\@startsection{section}{1}%
+    {\fivecharsapprox}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}}
+\makeatother
+
+% Зачем: Задает стиль заголовков разделов
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
 \renewcommand\subsection{%
   \@startsection{subsection}{2}%
     {\fivecharsapprox}%
-    {-1em \@plus -1ex \@minus -.2ex}%
-    {1em \@plus .2ex}%
-    {\raggedright\hyphenpenalty=10000\normalfont\normalsize}}
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\raggedright\hyphenpenalty=10000\normalfont\large\bfseries}}
 \makeatother
 
-
-% Зачем: Задает стиль заголовков пунктов
-% Почему: Пункты 2.1.1, 2.2.5 и ПРИЛОЖЕНИЕ Л Требований по оформлению пояснительной записки.
+% Зачем: Задает стиль заголовков подразделов
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
 \renewcommand\subsubsection{
   \@startsection{subsubsection}{3}%
     {\fivecharsapprox}%
-    {-1em \@plus -1ex \@minus -.2ex}%
-    {1em \@plus .2ex}%
-    %{\z@}%
-    {\raggedright\hyphenpenalty=10000\normalfont\normalsize}}
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}
 \makeatother
 
 % Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
-% Почему: Пункты 1.1.15 и 1.1.11 Требований по оформлению пояснительной записки.
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
 \newcommand\sectioncentered{%
-  \clearpage\@startsection {section}{1}%
+  \clearpage\@startsection{section}{1}%
     {\z@}%
-    {-1em \@plus -1ex \@minus -.2ex}%
-    {1em \@plus .2ex}%
-    {\centering\hyphenpenalty=10000\normalfont\normalsize\MakeUppercase}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
     }
 \makeatother
 
 % Приложения к записке
 \makeatletter
 \newcommand\sectionadd{%
-  \clearpage\@startsection {subsection}{1}%
+  \clearpage\@startsection{subsection}{1}%
     {\z@}%
-    {-1em \@plus -1ex \@minus -.2ex}%
-    {1sp \@plus .1em}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1sp \@plus.1em}%
     {\centering\hyphenpenalty=10000\normalfont\normalsize}%
     }
 \makeatother
@@ -299,9 +298,9 @@
 % Зачем: Устанавливает отступ от границы документа до символа списка, чтобы этот отступ равнялся отступу параграфа
 % Почему: Пункт 2.3.5 Требований по оформлению пояснительной записки.
 
-\setlist[itemize,0]{itemindent=\parindent + 2.2ex,leftmargin=0ex,label=--}
-\setlist[enumerate,1]{itemindent=\parindent + 2.7ex,leftmargin=0ex}
-\setlist[enumerate,2]{itemindent=\parindent + \parindent - 2.7ex}
+\setlist[itemize,0]{itemindent=\parindent+ 2.2ex,leftmargin=0ex,label=--}
+\setlist[enumerate,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
+\setlist[enumerate,2]{itemindent=\parindent+ \parindent-2.7ex}
 
 % Зачем: Включение номера раздела в номер формулы. Нумерация формул внутри раздела.
 \AtBeginDocument{\numberwithin{equation}{section}}
@@ -325,8 +324,8 @@
 
 % Зачем: макрос для печати римских чисел
 \makeatletter
-\newcommand{\rmnum}[1]{\romannumeral #1}
-\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\newcommand{\rmnum}[1]{\romannumeral#1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral#1@}
 \makeatother
 
 
@@ -439,17 +438,11 @@
 \newlist{enum}{enumerate}{10}
 \setlist[enum]{label*=\arabic*.,font=\normalfont}
 
-\setlist[enum,1]{itemindent=\parindent + 2.7ex,leftmargin=0ex}
-\setlist[enum,2]{itemindent=\parindent + \parindent - 2.7ex}
+\setlist[enum,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
+\setlist[enum,2]{itemindent=\parindent+ \parindent-2.7ex}
 
-\lstdefinestyle{qtstyle}{
-   xleftmargin=1.25cm,
-   basicstyle=\fontencoding{T1}\small\ttfamily,
-   breaklines=true,
-   tabsize=4
-}
-
-% Удаляет точки после нумерации section и прочих
+% Зачем: Удаляет точки после нумерации section и прочих
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \AtBeginDocument{%
    \def\postsection{\@aftersepkern}%
    \def\postsubsection{\@aftersepkern}%
@@ -466,9 +459,3 @@
 \usemintedstyle{bw}
 
 \setlength{\belowcaptionskip}{-10pt}
-
-%\setlength{\textfloatsep}{0.1cm}
- %\setlength{\intextsep}{6pt}
- %\makeatletter
-%\preto{\@tabular}{\parskip=0pt}
-%\makeatother
