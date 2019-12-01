@@ -69,14 +69,15 @@
 
 % Зачем: Настраивает отступ между таблицей с содержанимем и словом СОДЕРЖАНИЕ
 % Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
+% TODO: make chapter and part uppercase
 \usepackage{tocloft}
 \setlength{\cftbeforetoctitleskip}{-1em}
 \setlength{\cftaftertoctitleskip}{1em}
 \setlength{\cftbeforechapskip}{0pt}
 \setlength{\cftbeforepartskip}{0pt}
 
-\renewcommand{\cftchappresnum}{ГЛАВА }
-\renewcommand{\cftchapnumwidth}{5em}
+\renewcommand{\cftchappresnum}{Глава }
+\renewcommand{\cftchapnumwidth}{4em}
 
 \renewcommand{\cftchapfont}{\normalfont}
 \renewcommand{\cftchappagefont}{\normalfont}
@@ -89,7 +90,7 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
 \renewcommand\contentsname{Оглавление}
-\renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeTextUppercase}
+\renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeUppercase}
 \renewcommand{\cftaftertoctitle}{\hfil\hfill}
 
 \setcounter{secnumdepth}{3}
