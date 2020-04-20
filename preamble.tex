@@ -1,55 +1,110 @@
-% !TeX spellcheck = russian-aot-ieyo
-% Зачем: Определяет класс документа (То, как будет выглядеть документ)
-% Примечание: параметр draft помечает строки, вышедшие за границы страницы, прямоугольником, в фильной версии его нужно удалить.
+% Зачем: Определяет класс документа (то, как будет выглядеть документ)
+% Примечание: параметр draft помечает строки, вышедшие за границы страницы, прямоугольником, в финальной версии его нужно удалить.
+% Почему: Пункт 4.1 Материалы автореферата и пояснительной записки магистерской диссертации печатаются с помощью
+% компьютера на одной стороне листа белой бумаги формата А4 (210 х 297 мм).
 \documentclass[a4paper,14pt,russian,oneside,final]{extreport}
 
 % Для мультиязыковой поддержки
 \usepackage{polyglossia}
 
-% Установка язков
+% Установка языков
 \setdefaultlanguage{russian}
 \setmainlanguage{russian}
 \setotherlanguage{english}
 
-% Лигатуры нужны для правильного отображения тире, кавычек и прочего
+% Зачем: Установка основных шрифтов
+% Примечание: установка лигатур нужны для правильного отображения тире, кавычек и прочего
+% Почему: Пункт 4.2 ...При этом рекомендуется использовать шрифты типа Times New Roman размером 14 пунктов.
 \setmainfont[Ligatures=TeX]{Times New Roman}
 \setmonofont[Ligatures=TeX]{Courier New}
 
-% Необходимо для киррилических шрифтов
+% Необходимо для кириллических шрифтов
 \newfontfamily{\cyrillicfont}[Ligatures=TeX]{Times New Roman}
 \newfontfamily{\cyrillicfonttt}[Ligatures=TeX]{Courier New}
 
-%% Зачем: Чтобы можно было использовать русские буквы в формулах, но в случае использования предупреждать об этом.
-%\usepackage[warn]{mathtext}
+% Зачем: Межстрочный интервал в 18pt точно
+% Почему: Пункт 4.2. Межстрочный интервал должен составлять 18 пунктов.
+\usepackage{leading}
+\leading{18pt}
 
-% Зачем: Учет особенностей различных языков.
-\usepackage{babel}
+% Зачем: Настраивает отступы от границ страницы.
+% Почему: Пункт 4.2. ...соблюдая следующие размеры полей: левое – 30 мм, правое – 10 мм, верхнее и нижнее – 20 мм.
+\usepackage[left=3cm,top=2cm,right=1cm,bottom=2cm]{geometry}
 
-% Зачем: Длинна, пимерно соответвующая 5 символам
+%==================================================================
+
+% Зачем: Установить для large размер в 15пт
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\makeatletter
+\renewcommand\large{\@setfontsize\large{15pt}{18}} % м.б. 18пт baselineskip некорректен
+\makeatother
+
+% Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\makeatletter
+\renewcommand\part{%
+  \clearpage\@startsection{part}{-1}%
+    {\fivecharsapprox}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
+    }
+\makeatother
+
+% Зачем: Задает стиль заголовков глав жирным шрифтом, прописными буквами, без точки в конце
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\large\centering\bfseries}
+{\MakeTextUppercase\chaptertitlename\ \thechapter}
+{.5em}
+{\MakeTextUppercase}
+
+\titlespacing*{\chapter}
+  {0pt}{0pt}{1em}
+
+% Зачем: Задает стиль заголовков разделов
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\makeatletter
+\renewcommand\section{%
+  \@startsection{section}{1}%
+    {\fivecharsapprox}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\raggedright\hyphenpenalty=10000\normalfont\large\bfseries}}
+\makeatother
+
+% Зачем: Задает стиль заголовков подразделов
+% Почему: Пункт 4.3.1 Положения о магистерской диссертации
+\makeatletter
+\renewcommand\subsection{
+  \@startsection{subsection}{2}%
+    {\fivecharsapprox}%
+    {-1em \@plus-1ex \@minus-.2ex}%
+    {1em \@plus.2ex}%
+    {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}
+\makeatother
+
+%----------------------------------------------------------------------------------------
+
+% TODO
+% Зачем: Длинна, примерно соответствующая 5 символам
 % Почему: Требования содержат странное требование про отсупы в 5 символов (для немоноширинного шрифта :| )
 \newlength{\fivecharsapprox}
 \setlength{\fivecharsapprox}{6ex}
 
-
+% TODO
 % Зачем: Добавляет отступы для абзацев.
 % Почему: Пункт 2.1.3 Требований по оформлению пояснительной записки.
 \usepackage{indentfirst}
-\setlength{\parindent}{\fivecharsapprox} % Примерно соответсвует 5 символам.
+\setlength{\parindent}{\fivecharsapprox} % Примерно соответствует 5 символам.
 
-
-% Зачем: Настраивает отступы от границ страницы.
-% Почему: Пункт 4.2. Положения о магистерской диссертации
-\usepackage[left=3cm,top=2.0cm,right=1.0cm,bottom=2.0cm]{geometry}
-
-% Зачем: межстрочный интервал в 18pt
-% Почему: Пункт 4.2. Положения о магистерской диссертации
-\usepackage{leading}
-\leading{18pt}
-
+% TODO
 % Зачем: Отключает использование изменяемых межсловных пробелов.
 % Почему: Так не принято делать в текстах на русском языке.
 \frenchspacing
 
+% TODO
 % Зачем: Сброс счетчика сносок для каждой страницы
 % Примечание: в "Требованиях по оформлению пояснительной записки" не указано, как нужно делать, но в других БГУИРовских докуметах рекомендуется нумерация отдельная для каждой страницы
 \usepackage{perpage}
@@ -110,58 +165,6 @@
 \fancypagestyle{plain}{
     \fancyhf{}\fancyfoot[R]{\cfoot\thepage}
 }
-
-% Зачем: Установить для large размер в 15пт
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\makeatletter
-\renewcommand\large{\@setfontsize\large{15pt}{18}} % м.б. 18пт baselineskip некорректен
-\makeatother
-
-% Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\makeatletter
-\renewcommand\part{%
-  \clearpage\@startsection{part}{-1}%
-    {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
-    {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
-    }
-\makeatother
-
-% Зачем: Задает стиль заголовков глав жирным шрифтом, прописными буквами, без точки в конце
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\usepackage{titlesec}
-\titleformat{\chapter}[display]
-{\normalfont\large\centering\bfseries}
-{\MakeTextUppercase\chaptertitlename\ \thechapter}
-{.5em}
-{\MakeTextUppercase}
-
-\titlespacing*{\chapter}
-  {0pt}{0pt}{1em}
-
-% Зачем: Задает стиль заголовков разделов
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\makeatletter
-\renewcommand\section{%
-  \@startsection{section}{1}%
-    {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
-    {\raggedright\hyphenpenalty=10000\normalfont\large\bfseries}}
-\makeatother
-
-% Зачем: Задает стиль заголовков подразделов
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\makeatletter
-\renewcommand\subsection{
-  \@startsection{subsection}{2}%
-    {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
-    {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}
-\makeatother
 
 % Зачем: Задает стиль библиографии
 % Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
@@ -439,11 +442,10 @@
    \def\postsubparagraph{\@aftersepkern}%
 }
 
-\usepackage{minted}
-
-\setminted[c++]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=4}
-\setminted[JSON]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=2}
-
-\usemintedstyle{bw}
+% настройки для листингов кода
+% \usepackage{minted}
+% \setminted[c++]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=4}
+% \setminted[JSON]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=2}
+% \usemintedstyle{bw}
 
 \setlength{\belowcaptionskip}{-10pt}
