@@ -59,8 +59,8 @@
 \renewcommand\part{%
   \clearpage\@startsection{part}{-1}%
     {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
+    {-1em plus-1ex minus-.2ex}%
+    {1em plus.2ex}%
     {\centering\hyphenpenalty=10000\normalfont\large\bfseries\MakeUppercase}%
     }
 \makeatother
@@ -88,8 +88,8 @@
 \renewcommand\section{%
   \@startsection{section}{1}%
     {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
+    {-1em plus-1ex minus-.2ex}%
+    {1em plus.2ex}%
     {\raggedright\hyphenpenalty=10000\normalfont\large\bfseries}}
 \makeatother
 
@@ -100,8 +100,8 @@
 \renewcommand\subsection{
   \@startsection{subsection}{2}%
     {\fivecharsapprox}%
-    {-1em \@plus-1ex \@minus-.2ex}%
-    {1em \@plus.2ex}%
+    {-1em plus-1ex minus-.2ex}%
+    {1em plus.2ex}%
     {\raggedright\hyphenpenalty=10000\normalfont\normalsize\bfseries}}
 \makeatother
 
@@ -112,10 +112,13 @@
 \renewcommand\subsubsection{
   \@startsection{subsubsection}{3}
     {\fivecharsapprox}
-    {-1em \@plus-1ex \@minus-.2ex}
-    {1em \@plus.2ex}
+    {-1em plus-1ex minus-.2ex}
+    {1em plus.2ex}
     {\raggedright\hyphenpenalty=10000\normalsize\bfseries}}
 \makeatother
+
+% Зачем: нумерация для пунктов
+\setcounter{secnumdepth}{3}
 
 % Зачем: точка в конце пунктов
 % Почему: Пункт 4.3.1 В конце заголовка пункта ставят точку
@@ -131,25 +134,8 @@
 % последующих страницах номер проставляют в центре нижней части листа без точки в конце.
 \pagestyle{fancy}
 \fancyhf{}\fancyfoot{\cfoot\thepage}
-%----------------------------------------------------------------------------------------
-% TODO
-% Зачем: Сброс счетчика сносок для каждой страницы
-% Примечание: в "Требованиях по оформлению пояснительной записки" не указано, как нужно делать, но в других БГУИРовских докуметах рекомендуется нумерация отдельная для каждой страницы
-\usepackage{perpage}
-\MakePerPage{footnote}
 
-
-% Зачем: Добавляет скобку 1) к номеру сноски
-% Почему: Пункты 2.9.2 и 2.9.1 Требований по оформлению пояснительной записки.
-\makeatletter
-\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}}
-\makeatother
-
-
-% Зачем: Расположение сносок внизу страницы
-% Почему: Пункт 2.9.2 Требований по оформлению пояснительной записки.
-\usepackage[bottom]{footmisc}
-
+%=============================================================
 % Зачем: Настраивает отступ между таблицей с содержанимем и словом СОДЕРЖАНИЕ
 % Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
 % TODO: make chapter and part uppercase
@@ -175,26 +161,54 @@
 \renewcommand\contentsname{Оглавление}
 \renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeUppercase}
 \renewcommand{\cftaftertoctitle}{\hfil\hfill}
-
-\setcounter{secnumdepth}{3}
-
-% Зачем: Задает стиль библиографии
-% Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
-\bibliographystyle{styles/ugost2003}
-
+%=============================================================
 
 % Зачем: Пакет для вставки картинок
 % Примечание: Объяснение, зачем final - http://tex.stackexchange.com/questions/11004/why-does-the-image-not-appear
 \usepackage[final]{graphicx}
-\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
-
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
 
 % Зачем: Директория в которой будет происходить поиск картинок
 \graphicspath{{figures/}}
 
+% Зачем: Добавление подписей к рисункам. Рисунки нумеруются в пределах главы
+% Почему: Пункт 4.4.8 Номер иллюстрации (таблицы) должен состоять из номера
+% главы и порядкового номера иллюстрации (таблицы), разделенных точкой.
+\usepackage[nooneline,figurewithin=chapter]{caption}
 
-% Зачем: Добавление подписей к рисункам
-\usepackage[nooneline]{caption}
+% Зачем: Задание подписей, разделителя и нумерации частей рисунков
+% Почему: Пункт 4.4.8 4.4.8 Иллюстрации и таблицы обозначают соответственно
+% словами «Рисунок» и «Таблица» и нумеруют последовательно в пределах каждой главы.
+\DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{stbtable}{Таблица #2}
+\DeclareCaptionLabelSeparator{stb}{~--~}
+\captionsetup{labelsep=stb}
+\captionsetup[figure]{labelformat=stbfigure,justification=centering}
+\captionsetup[table]{labelformat=stbtable,justification=raggedright,format=hang,aboveskip=0pt}
+% Зачем: группировка рисунков
+\usepackage{subfig}
+%----------------------------------------------------------------------------------------
+% TODO
+% Зачем: Сброс счетчика сносок для каждой страницы
+% Примечание: в "Требованиях по оформлению пояснительной записки" не указано, как нужно делать, но в других БГУИРовских докуметах рекомендуется нумерация отдельная для каждой страницы
+\usepackage{perpage}
+\MakePerPage{footnote}
+
+
+% Зачем: Добавляет скобку 1) к номеру сноски
+% Почему: Пункты 2.9.2 и 2.9.1 Требований по оформлению пояснительной записки.
+\makeatletter
+\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}}
+\makeatother
+
+
+% Зачем: Расположение сносок внизу страницы
+% Почему: Пункт 2.9.2 Требований по оформлению пояснительной записки.
+\usepackage[bottom]{footmisc}
+
+% Зачем: Задает стиль библиографии
+% Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
+\bibliographystyle{styles/ugost2003}
 
 % Зачем: чтобы работала \No в новых латехах
 \DeclareRobustCommand{\No}{\ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
@@ -203,21 +217,8 @@
 \usepackage{rotating}
 \DeclareRobustCommand{\povernut}[1]{\begin{sideways}{#1}\end{sideways}}
 
-
 % Зачем: когда в формулах много кириллических символов команда \text{} занимает много места
 \DeclareRobustCommand{\x}[1]{\text{#1}}
-
-
-% Зачем: Задание подписей, разделителя и нумерации частей рисунков
-% Почему: Пункт 2.5.5 Требований по оформлению пояснительной записки.
-\DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
-\DeclareCaptionLabelFormat{stbtable}{Таблица #2}
-\DeclareCaptionLabelSeparator{stb}{~--~}
-\captionsetup{labelsep=stb}
-\captionsetup[figure]{labelformat=stbfigure,justification=centering}
-\captionsetup[table]{labelformat=stbtable,justification=raggedright,format=hang,aboveskip=0pt}
-\usepackage{subfig}
-\renewcommand\thesubfigure{\asbuk{subfigure}}
 
 
 % Зачем: Окружения для оформления формул
@@ -304,16 +305,6 @@
 \setlist[itemize,0]{itemindent=\parindent+ 2.2ex,leftmargin=0ex,label=--}
 \setlist[enumerate,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
 \setlist[enumerate,2]{itemindent=\parindent+ \parindent-2.7ex}
-
-% Зачем: Включение номера раздела в номер формулы. Нумерация формул внутри раздела.
-\AtBeginDocument{\numberwithin{equation}{section}}
-
-% Зачем: Включение номера раздела в номер таблицы. Нумерация таблиц внутри раздела.
-\AtBeginDocument{\numberwithin{table}{section}}
-
-% Зачем: Включение номера раздела в номер рисунка. Нумерация рисунков внутри раздела.
-\AtBeginDocument{\numberwithin{figure}{section}}
-
 
 % Зачем: Дополнительные возможности в форматировании таблиц
 \usepackage{makecell}
