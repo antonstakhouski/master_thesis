@@ -170,7 +170,7 @@
 % Пункт 4.5 Слово «Рисунок», его номер и наименование иллюстрации печатают
 % полужирным шрифтом, причем слово «Рисунок», его номер, а также пояснительные
 % данные к нему – уменьшенным на 1–2 пункта размером шрифта.
-\usepackage[nooneline,figurewithin=chapter,font=small,labelfont=bf,textfont=bf]{caption}
+\usepackage[nooneline,figurewithin=chapter,font=small]{caption}
 
 % Зачем: Задание подписей, разделителя и нумерации частей рисунков
 % Почему: Пункт 4.4.8 4.4.8 Иллюстрации и таблицы обозначают соответственно
@@ -179,7 +179,7 @@
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 \DeclareCaptionLabelSeparator{stb}{~--~}
 \captionsetup{labelsep=stb}
-\captionsetup[figure]{labelformat=stbfigure,justification=centering}
+\captionsetup[figure]{labelformat=stbfigure,justification=centering,labelfont=bf,textfont=bf}
 \captionsetup[table]{labelformat=stbtable,justification=raggedright,format=hang,aboveskip=0pt}
 % Зачем: группировка рисунков
 \usepackage{subfig}
