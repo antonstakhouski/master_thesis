@@ -1,12 +1,22 @@
 % Зачем: Изменение надписи для списка литературы
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \part*{Библиографический список}
-\phantomsection\pagebreak% исправляет нумерацию в документе и исправляет гиперссылки в pdf
 \addcontentsline{toc}{part}{Cписок использованных источников}
 
 % Зачем: Печать списка литературы. База данных литературы - файл bibliography_database.bib
 % \bibliography{bibliography_database}
-\printbibliography[category=AuthorSources,heading=subbibliography,
-    title={Список публикаций автора},resetnumbers=true]
-\printbibliography[notcategory=AuthorSources,heading=subbibliography,
-    title={Список использованных источников},resetnumbers=true]
+\printbibliography[
+    category=AuthorSources,
+    heading=subbibliography,
+    title={Список публикаций автора},
+    resetnumbers=true
+]
+
+\clearpage
+
+\printbibliography[
+    notcategory=AuthorSources,
+    heading=subbibliography,
+    title={Список использованных источников},
+    resetnumbers=true
+]

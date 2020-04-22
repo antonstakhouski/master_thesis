@@ -228,11 +228,24 @@
 %      \setlength{\parsep}{10pt}%
 %    \fi
 % }
-\usepackage[sorting=none,backend=biber,defernumbers=true]{biblatex} % load the package
-\addbibresource{bibliography_database.bib} % add a bib-reference file
+% Зачем: оформление библиографии через biblatex
+\usepackage[
+    sorting=none,
+    backend=biber,
+    defernumbers=true,
+    bibstyle=gost-numeric-min,
+    citestyle=gost-numeric,
+    language=auto,
+    autolang=other
+    ] {biblatex}
+% файл с библиографией
+\addbibresource{bibliography_database.bib}
 
+% Добавление отдельной категории для авторских публикаций
 \DeclareBibliographyCategory{AuthorSources}
 \addtocategory{AuthorSources}{mol_uch,55_sntk}
+
+\toggletrue{bbx:gostbibliography}
 
 
 %----------------------------------------------------------------------------------------
