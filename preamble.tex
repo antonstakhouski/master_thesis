@@ -133,36 +133,40 @@
 \pagestyle{fancy}
 \fancyhf{}\fancyfoot{\cfoot\thepage}
 
-%=============================================================
 % Если опустить настройку оглавления ниже --- будут проблемы с компиляцией :|
-% Зачем: Настраивает отступ между таблицей с содержанимем и словом СОДЕРЖАНИЕ
-% Почему: Пункт 2.2.7 Требований по оформлению пояснительной записки.
-% TODO: make chapter and part uppercase
+% Зачем: настройка оглавления
 \usepackage{tocloft}
 \setlength{\cftbeforetoctitleskip}{-1em}
 \setlength{\cftaftertoctitleskip}{1em}
 \setlength{\cftbeforechapskip}{0pt}
 \setlength{\cftbeforepartskip}{0pt}
 
-\renewcommand{\cftchappresnum}{Глава }
-\renewcommand{\cftchapnumwidth}{4em}
+% Печать слова ГЛАВА
+\renewcommand{\cftchappresnum}{Глава}
+\renewcommand{\cftchapnumwidth}{5em}
 
+% Добавляем точечки после part, chapter, section
 \renewcommand{\cftchapfont}{\normalfont}
 \renewcommand{\cftchappagefont}{\normalfont}
 
 \renewcommand{\cftpartfont}{\normalfont}
 \renewcommand{\cftpartpagefont}{\normalfont}
 
+% Добавляем точечки после part, chapter, section
 \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
 
+% Заголовок ОГЛАВЛЕНИЕ
 \renewcommand\contentsname{Оглавление}
 \renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeUppercase}
 \renewcommand{\cftaftertoctitle}{\hfil\hfill}
 
+% Ссылки в содержании и http ссылки
 \usepackage[final,hidelinks,unicode]{hyperref}
 
+% Макрос для печати part и chapter прописными буквами
+% Да, вложенный if выглядит убого, но это работает :|
 \makeatletter
 \let\oldcontentsline\contentsline
 \def\contentsline#1#2{%
@@ -187,7 +191,6 @@
   }%
 }
 \makeatother
-%=============================================================
 
 % Зачем: Пакет для вставки картинок
 % Примечание: Объяснение, зачем final - http://tex.stackexchange.com/questions/11004/why-does-the-image-not-appear
