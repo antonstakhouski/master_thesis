@@ -43,10 +43,10 @@
 \usepackage{indentfirst}
 \setlength{\parindent}{\fivecharsapprox} % Примерно соответствует 5 символам.
 
-% Зачем: Установить для large размер в 15пт
+% Зачем: Установить для large размер в 16пт
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \makeatletter
-\renewcommand\large{\@setfontsize\large{16pt}{18}} % м.б. 18пт baselineskip некорректен
+\renewcommand\large{\@setfontsize\large{16pt}{18}} % 18 -- baseline skip
 \makeatother
 
 % Зачем: для оформления введения и заключения, они должны быть выровнены по центру.
@@ -185,30 +185,41 @@
 \DeclareCaptionLabelFormat{stbtable}{Таблица #2}
 \DeclareCaptionLabelSeparator{stb}{~--~}
 \captionsetup{labelsep=stb}
-\captionsetup[figure]{labelformat=stbfigure,justification=centering,labelfont=bf,textfont=bf}
+\captionsetup[figure]{labelformat=stbfigure,justification=centering,labelfont=bf,textfont=bf,belowskip=-10pt}
 \captionsetup[table]{labelformat=stbtable,justification=raggedright,format=hang,aboveskip=0pt}
 % Зачем: группировка рисунков
 \usepackage{subfig}
 % Зачем: русские индексы для рисунков
 \renewcommand\thesubfigure{\asbuk{subfigure}}
+
+% Зачем: Удаляет точки после нумерации section и прочих
+% Почему: Пункт 4.4.6 Заголовки разделов, подразделов, пунктов приводят после их номеров через пробел.
+\AtBeginDocument{%
+   \def\postpart{\@aftersepkern}%
+   \def\postchapter{\@aftersepkern}%
+   \def\postsection{\@aftersepkern}%
+   \def\postsubsection{\@aftersepkern}%
+   \def\postsubsubsection{\@aftersepkern}%
+   \def\postparagraph{\@aftersepkern}%
+   \def\postsubparagraph{\@aftersepkern}%
+}
+
+% Зачем: настройки для листингов кода
+% необходим пакет python-pygments
+\usepackage{minted}
+% Зачем: тема с оттенками серого. Удобна для печати
+\usemintedstyle{bw}
+% Зачем: настройки для выбранных ЯП
+\setminted[c++]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=4}
+
+% Зачем: преобразовывать текст в верхний регистр командой MakeTextUppercase
+\usepackage{textcase}
+
+% Зачем: Переносы в словах с тире.
+% Тире в слове заменяем на \hyph: аппаратно\hyph{}программный.
+% https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash#
+\def\hyph{-\penalty0\hskip0pt\relax}
 %----------------------------------------------------------------------------------------
-% TODO
-% Зачем: Сброс счетчика сносок для каждой страницы
-% Примечание: в "Требованиях по оформлению пояснительной записки" не указано, как нужно делать, но в других БГУИРовских докуметах рекомендуется нумерация отдельная для каждой страницы
-\usepackage{perpage}
-\MakePerPage{footnote}
-
-
-% Зачем: Добавляет скобку 1) к номеру сноски
-% Почему: Пункты 2.9.2 и 2.9.1 Требований по оформлению пояснительной записки.
-\makeatletter
-\def\@makefnmark{\hbox{\@textsuperscript{\normalfont\@thefnmark)}}}
-\makeatother
-
-
-% Зачем: Расположение сносок внизу страницы
-% Почему: Пункт 2.9.2 Требований по оформлению пояснительной записки.
-\usepackage[bottom]{footmisc}
 
 % Зачем: Задает стиль библиографии
 % Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
@@ -245,40 +256,17 @@
     \end{itemize}
     }
 
-% Старое окружение для "где". Сохранено для совместимости
-\usepackage{tabularx}
-
-\newenvironment{explanation}
-    {
-    %%% Следующие строки определяют специфические требования разных редакций стандартов. Раскоменнтируйте нужные 2 строки
-    %% стандартный абзац, СТП-01 2010
-    %\par
-    %\tabularx{\textwidth-\fivecharsapprox}{@{}ll@{ --- } X }
-    %% без отступа, СТП-01 2013
-    \noindent
-    \tabularx{\textwidth}{@{}ll@{ --- } X }
-    }
-    {
-    \\[\parsep]
-    \endtabularx
-    }
-
-
 % Зачем: Удобная вёрстка многострочных формул, масштабирующийся текст в формулах, формулы в рамках и др
 \usepackage{amsmath}
-
 
 % Зачем: Поддержка ажурного и готического шрифтов
 \usepackage{amsfonts}
 
-
 % Зачем: amsfonts + несколько сотен дополнительных математических символов
 \usepackage{amssymb}
 
-
 % Зачем: Окружения «теорема», «лемма»
 \usepackage{amsthm}
-
 
 % Зачем: Производить арифметические операции во время компиляции TeX файла
 \usepackage{calc}
@@ -341,11 +329,6 @@
 
 \usepackage{xcolor}
 
-
-% Зачем: Оформление листингов кода
-% Примечание: final нужен для переопределения режима draft, в котором листинги не выводятся в документ.
-\usepackage[final]{listings}
-
 \usepackage[normalem]{ulem}
 
 \usepackage[final,hidelinks,unicode]{hyperref}
@@ -401,14 +384,6 @@
 % http://ctan.org/pkg/gensymb
 \usepackage{gensymb}
 
-% Зачем: преобразовывать текст в верхний регистр командой MakeTextUppercase
-\usepackage{textcase}
-
-% Зачем: Переносы в словах с тире.
-% Тире в словае заменяем на \hyph: аппаратно\hyphпрограммный.
-% https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash#
-\def\hyph{-\penalty0\hskip0pt\relax}
-
 % Добавляем абзацный отступ для библиографии
 % https://github.com/mstyura/bsuir-diploma-latex/issues/19
 \setlength\bibindent{-1.0900cm}
@@ -436,23 +411,3 @@
 
 \setlist[enum,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
 \setlist[enum,2]{itemindent=\parindent+ \parindent-2.7ex}
-
-% Зачем: Удаляет точки после нумерации section и прочих
-% Почему: Пункт 4.3.1 Положения о магистерской диссертации
-\AtBeginDocument{%
-   \def\postpart{\@aftersepkern}%
-   \def\postchapter{\@aftersepkern}%
-   \def\postsection{\@aftersepkern}%
-   \def\postsubsection{\@aftersepkern}%
-   \def\postsubsubsection{\@aftersepkern}%
-   \def\postparagraph{\@aftersepkern}%
-   \def\postsubparagraph{\@aftersepkern}%
-}
-
-% настройки для листингов кода
-% \usepackage{minted}
-% \setminted[c++]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=4}
-% \setminted[JSON]{fontfamily=tt,fontsize=\small,xleftmargin=1.25cm,breaklines=true,tabsize=2}
-% \usemintedstyle{bw}
-
-\setlength{\belowcaptionskip}{-10pt}
