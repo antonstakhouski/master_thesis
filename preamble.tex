@@ -208,26 +208,6 @@
 % https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash#
 \def\hyph{-\penalty0\hskip0pt\relax}
 
-% Зачем: Задает стиль библиографии
-% Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
-% \bibliographystyle{ugost2003}
-%
-% \usepackage[square,numbers,sort&compress]{natbib}
-% \setlength{\bibsep}{0em}
-%
-% \makeatletter
-% \renewcommand\NAT@bibsetnum[1]{\settowidth\labelwidth{\@biblabel{#1}}%
-%    \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
-%    \setlength{\itemindent}{-\bibindent+\fivecharsapprox-0.240cm}%
-%    \setlength{\listparindent}{\itemindent}
-% \setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
-%    \ifNAT@openbib
-%      \addtolength{\leftmargin}{\bibindent}%
-%      \setlength{\itemindent}{-\bibindent}%
-%      \setlength{\listparindent}{\itemindent}%
-%      \setlength{\parsep}{10pt}%
-%    \fi
-% }
 % Зачем: оформление библиографии через biblatex
 \usepackage[
     sorting=none,
@@ -241,7 +221,8 @@
 % файл с библиографией
 \addbibresource{bibliography_database.bib}
 
-% Добавление отдельной категории для авторских публикаций
+% Зачем: добавление отдельной категории для авторских публикаций
+% Почему:
 \DeclareBibliographyCategory{AuthorSources}
 \addtocategory{AuthorSources}{mol_uch,55_sntk}
 

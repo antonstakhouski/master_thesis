@@ -1,19 +1,21 @@
 % Зачем: Изменение надписи для списка литературы
 % Почему: Пункт 4.3.1 Положения о магистерской диссертации
 \part*{Библиографический список}
-\addcontentsline{toc}{part}{Cписок использованных источников}
+\addcontentsline{toc}{part}{Библиографический список}
+\addcontentsline{toc}{section}{Список публикаций соискателя}
 
 % Зачем: Печать списка литературы. База данных литературы - файл bibliography_database.bib
 % \bibliography{bibliography_database}
 \printbibliography[
     category=AuthorSources,
     heading=subbibliography,
-    title={Список публикаций автора},
+    title={Список публикаций соискателя},
     resetnumbers=true
 ]
 
 \clearpage
 
+\addcontentsline{toc}{section}{Список использованных источников}
 \printbibliography[
     notcategory=AuthorSources,
     heading=subbibliography,
