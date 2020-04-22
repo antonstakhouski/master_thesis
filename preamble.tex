@@ -192,18 +192,6 @@
 % Зачем: русские индексы для рисунков
 \renewcommand\thesubfigure{\asbuk{subfigure}}
 
-% Зачем: Удаляет точки после нумерации section и прочих
-% Почему: Пункт 4.4.6 Заголовки разделов, подразделов, пунктов приводят после их номеров через пробел.
-\AtBeginDocument{%
-   \def\postpart{\@aftersepkern}%
-   \def\postchapter{\@aftersepkern}%
-   \def\postsection{\@aftersepkern}%
-   \def\postsubsection{\@aftersepkern}%
-   \def\postsubsubsection{\@aftersepkern}%
-   \def\postparagraph{\@aftersepkern}%
-   \def\postsubparagraph{\@aftersepkern}%
-}
-
 % Зачем: настройки для листингов кода
 % необходим пакет python-pygments
 \usepackage{minted}
@@ -219,11 +207,36 @@
 % Тире в слове заменяем на \hyph: аппаратно\hyph{}программный.
 % https://stackoverflow.com/questions/2193307/how-to-get-latex-to-hyphenate-a-word-that-contains-a-dash#
 \def\hyph{-\penalty0\hskip0pt\relax}
-%----------------------------------------------------------------------------------------
 
 % Зачем: Задает стиль библиографии
 % Почему: Пункт 2.8.6 Требований по оформлению пояснительной записки.
-\bibliographystyle{ugost2003}
+% \bibliographystyle{ugost2003}
+%
+% \usepackage[square,numbers,sort&compress]{natbib}
+% \setlength{\bibsep}{0em}
+%
+% \makeatletter
+% \renewcommand\NAT@bibsetnum[1]{\settowidth\labelwidth{\@biblabel{#1}}%
+%    \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
+%    \setlength{\itemindent}{-\bibindent+\fivecharsapprox-0.240cm}%
+%    \setlength{\listparindent}{\itemindent}
+% \setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
+%    \ifNAT@openbib
+%      \addtolength{\leftmargin}{\bibindent}%
+%      \setlength{\itemindent}{-\bibindent}%
+%      \setlength{\listparindent}{\itemindent}%
+%      \setlength{\parsep}{10pt}%
+%    \fi
+% }
+\usepackage[sorting=none,backend=biber,defernumbers=true]{biblatex} % load the package
+\addbibresource{bibliography_database.bib} % add a bib-reference file
+
+\DeclareBibliographyCategory{AuthorSources}
+\addtocategory{AuthorSources}{mol_uch,55_sntk}
+
+
+%----------------------------------------------------------------------------------------
+
 
 % Зачем: чтобы работала \No в новых латехах
 \DeclareRobustCommand{\No}{\ifmmode{\nfss@text{\textnumero}}\else\textnumero\fi}
@@ -335,9 +348,6 @@
 % Моноширинный шрифт выглядит визуально больше, чем пропорциональный шрифт, если их размеры одинаковы. Искусственно уменьшаем размер ссылок.
 \renewcommand{\UrlFont}{\normalfont\normalsize}
 
-\usepackage[square,numbers,sort&compress]{natbib}
-\setlength{\bibsep}{0em}
-
 % Магия для подсчета разнообразных объектов в документе
 \usepackage{lastpage}
 \usepackage{totcount}
@@ -388,20 +398,6 @@
 % https://github.com/mstyura/bsuir-diploma-latex/issues/19
 \setlength\bibindent{-1.0900cm}
 
-\makeatletter
-\renewcommand\NAT@bibsetnum[1]{\settowidth\labelwidth{\@biblabel{#1}}%
-   \setlength{\leftmargin}{\bibindent}\addtolength{\leftmargin}{\dimexpr\labelwidth+\labelsep\relax}%
-   \setlength{\itemindent}{-\bibindent+\fivecharsapprox-0.240cm}%
-   \setlength{\listparindent}{\itemindent}
-\setlength{\itemsep}{\bibsep}\setlength{\parsep}{\z@}%
-   \ifNAT@openbib
-     \addtolength{\leftmargin}{\bibindent}%
-     \setlength{\itemindent}{-\bibindent}%
-     \setlength{\listparindent}{\itemindent}%
-     \setlength{\parsep}{10pt}%
-   \fi
-}
-
 % Нумерованный список с арабскими цифрами на всех уровнях нумерации
 \newlist{legal}{enumerate}{10}
 \setlist[legal]{font=\bfseries}
@@ -411,3 +407,15 @@
 
 \setlist[enum,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
 \setlist[enum,2]{itemindent=\parindent+ \parindent-2.7ex}
+
+% Зачем: Удаляет точки после нумерации section и прочих
+% Почему: Пункт 4.4.6 Заголовки разделов, подразделов, пунктов приводят после их номеров через пробел.
+\AtBeginDocument{%
+   \def\postpart{\@aftersepkern}%
+   \def\postchapter{\@aftersepkern}%
+   \def\postsection{\@aftersepkern}%
+   \def\postsubsection{\@aftersepkern}%
+   \def\postsubsubsection{\@aftersepkern}%
+   \def\postparagraph{\@aftersepkern}%
+   \def\postsubparagraph{\@aftersepkern}%
+}

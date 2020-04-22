@@ -1,6 +1,6 @@
 XELATEX = lualatex --shell-escape
 MASTER_THESIS_PDF = master_thesis
-BIBTEX = bibtex
+BIBTEX = biber
 RM = rm -f
 GREP = grep
 
@@ -10,7 +10,7 @@ all: $(MASTER_THESIS_PDF).pdf
 
 $(MASTER_THESIS_PDF).pdf: *.tex
 	$(XELATEX) $(MASTER_THESIS_PDF)
-	$(BIBTEX) $(MASTER_THESIS_PDF).aux
+	$(BIBTEX) $(MASTER_THESIS_PDF)
 	$(XELATEX) $(MASTER_THESIS_PDF)
 	$(XELATEX) $(MASTER_THESIS_PDF)
 
