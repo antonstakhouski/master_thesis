@@ -160,6 +160,33 @@
 \renewcommand\contentsname{Оглавление}
 \renewcommand\cfttoctitlefont{\hfill\normalfont\large\bfseries\MakeUppercase}
 \renewcommand{\cftaftertoctitle}{\hfil\hfill}
+
+\usepackage[final,hidelinks,unicode]{hyperref}
+
+\makeatletter
+\let\oldcontentsline\contentsline
+\def\contentsline#1#2{%
+  \expandafter\ifx\csname l@#1\endcsname\l@part
+    \expandafter\@firstoftwo
+  \else
+    \expandafter\@secondoftwo
+  \fi
+  {%
+    \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
+  }{%
+      \expandafter\ifx\csname l@#1\endcsname\l@chapter
+        \expandafter\@firstoftwo
+      \else
+        \expandafter\@secondoftwo
+      \fi
+      {%
+        \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
+      }{%
+        \oldcontentsline{#1}{#2}%
+      }%
+  }%
+}
+\makeatother
 %=============================================================
 
 % Зачем: Пакет для вставки картинок
@@ -338,7 +365,6 @@
 
 \usepackage[normalem]{ulem}
 
-\usepackage[final,hidelinks,unicode]{hyperref}
 % Моноширинный шрифт выглядит визуально больше, чем пропорциональный шрифт, если их размеры одинаковы. Искусственно уменьшаем размер ссылок.
 \renewcommand{\UrlFont}{\normalfont\normalsize}
 
