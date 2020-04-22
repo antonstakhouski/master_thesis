@@ -252,13 +252,19 @@
 \addbibresource{bibliography_database.bib}
 
 % Зачем: добавление отдельной категории для авторских публикаций
-% Почему:
+% Почему: Пункт 4.9 Сведения об использованных в магистерской диссертации
+% источниках приводятся в разделе «Библиографический список», включающем
+% подразделы «Список использованных источников» и «Список публикаций
+% соискателя».
 \DeclareBibliographyCategory{AuthorSources}
 \addtocategory{AuthorSources}{mol_uch,55_sntk}
 
+% Более близкий к ГОСТ-2003 стиль
 \toggletrue{bbx:gostbibliography}
 
 
+% TODO: За этой линией скрываются макросы, которые возможно пригодятся в
+% будущем. Комментарии и код из предыдущих проектов
 %----------------------------------------------------------------------------------------
 
 
@@ -417,10 +423,6 @@
 % http://ctan.org/pkg/gensymb
 \usepackage{gensymb}
 
-% Добавляем абзацный отступ для библиографии
-% https://github.com/mstyura/bsuir-diploma-latex/issues/19
-\setlength\bibindent{-1.0900cm}
-
 % Нумерованный список с арабскими цифрами на всех уровнях нумерации
 \newlist{legal}{enumerate}{10}
 \setlist[legal]{font=\bfseries}
@@ -431,6 +433,7 @@
 \setlist[enum,1]{itemindent=\parindent+ 2.7ex,leftmargin=0ex}
 \setlist[enum,2]{itemindent=\parindent+ \parindent-2.7ex}
 
+% НЕ ДВИГАТЬ. Может поломаться
 % Зачем: Удаляет точки после нумерации section и прочих
 % Почему: Пункт 4.4.6 Заголовки разделов, подразделов, пунктов приводят после их номеров через пробел.
 \AtBeginDocument{%
