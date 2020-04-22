@@ -7,3 +7,5 @@
 tags
 *.pdf
 *.bak
+*.bcf
+*.xml
