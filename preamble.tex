@@ -12,6 +12,9 @@
 \setmainlanguage{russian}
 \setotherlanguage{english}
 
+% Зачем: так принято в русском языке
+\PolyglossiaSetup{russian}{indentfirst=true}
+
 % Зачем: Установка основных шрифтов
 % Примечание: установка лигатур нужны для правильного отображения тире, кавычек и прочего
 % Почему: Пункт 4.2 ...При этом рекомендуется использовать шрифты типа Times New Roman размером 14 пунктов.
@@ -195,7 +198,7 @@
 % Зачем: Пакет для вставки картинок
 % Примечание: Объяснение, зачем final - http://tex.stackexchange.com/questions/11004/why-does-the-image-not-appear
 \usepackage[final]{graphicx}
-\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
 
 % Зачем: Директория в которой будет происходить поиск картинок
 \graphicspath{{figures/}}
@@ -239,11 +242,12 @@
 \def\hyph{-\penalty0\hskip0pt\relax}
 
 % Зачем: оформление библиографии через biblatex
+\usepackage{csquotes}
 \usepackage[
     sorting=none,
     backend=biber,
     defernumbers=true,
-    bibstyle=gost-numeric-min,
+    bibstyle=gost-numeric,
     citestyle=gost-numeric,
     language=auto,
     autolang=other
@@ -257,7 +261,7 @@
 % подразделы «Список использованных источников» и «Список публикаций
 % соискателя».
 \DeclareBibliographyCategory{AuthorSources}
-\addtocategory{AuthorSources}{mol_uch,55_sntk}
+\addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk}
 
 % Более близкий к ГОСТ-2003 стиль
 \toggletrue{bbx:gostbibliography}
