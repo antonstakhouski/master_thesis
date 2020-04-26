@@ -4,21 +4,21 @@
 \addcontentsline{toc}{part}{Библиографический список}
 \addcontentsline{toc}{section}{Список публикаций соискателя}
 
-% Зачем: Печать списка литературы. База данных литературы - файл bibliography_database.bib
-% \bibliography{bibliography_database}
+\newrefcontext[labelprefix=A]
 \printbibliography[
     category=AuthorSources,
     heading=subbibliography,
     title={Список публикаций соискателя},
-    resetnumbers=true
+    resetnumbers
 ]
 
 \clearpage
 
 \addcontentsline{toc}{section}{Список использованных источников}
+\newrefcontext
 \printbibliography[
     notcategory=AuthorSources,
     heading=subbibliography,
     title={Список использованных источников},
-    resetnumbers=true
+    resetnumbers
 ]

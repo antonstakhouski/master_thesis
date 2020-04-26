@@ -267,6 +267,66 @@
 % Более близкий к ГОСТ-2003 стиль
 \toggletrue{bbx:gostbibliography}
 
+% Зачем: Добавление постфикса "--А" к авторским публикациям
+% https://tex.stackexchange.com/questions/540028/biblatex-add-postfix-to-label
+% Почему: Пункт 3.9 В списке использованных источников сведения об источниках
+% нумеруют арабскими цифрами, а в списке публикаций автора – арабскими цифрами,
+% которые через тире дополняются буквой «А.» («авторская») с точкой.
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+\DeclareFieldFormat{labelprefix}{--#1}
+
+\defbibenvironment{bibliography}
+  {\list
+     {\printtext[labelnumberwidth]{%
+        \printfield{labelnumber}%
+        \printfield{labelprefix}}}
+     {\setlength{\labelwidth}{\labelnumberwidth}%
+      \setlength{\leftmargin}{\labelwidth}%
+      \setlength{\labelsep}{\biblabelsep}%
+      \addtolength{\leftmargin}{\labelsep}%
+      \setlength{\itemsep}{\bibitemsep}%
+      \setlength{\parsep}{\bibparsep}}%
+      \renewcommand*{\makelabel}[1]{\hss##1}}
+  {\endlist}
+  {\item}
+
+\makeatletter
+\renewbibmacro*{cite:comp:end}{%
+  \usebibmacro{cite:dump}%
+  \ifnumgreater{\value{cbx@tempcntb}}{-1}
+    {\multicitedelim}
+    {}%
+  \printtext[bibhyperref]{%
+    \printfield{labelnumber}%
+    \printfield{labelprefix}}}
+
+\renewbibmacro*{cite:comp:inset}{%
+  \usebibmacro{cite:dump}%
+  \ifnumgreater{\value{cbx@tempcntb}}{-1}
+    {\multicitedelim}
+    {}%
+  \printtext[bibhyperref]{%
+    \printfield{labelnumber}%
+    \printfield{labelprefix}%
+    \printfield{entrysetcount}}%
+  \setcounter{cbx@tempcntb}{-1}}
+
+\renewbibmacro*{cite:dump}{%
+  \ifnumgreater{\value{cbx@tempcnta}}{0}
+    {\ifnumgreater{\value{cbx@tempcnta}}{1}
+       {\bibrangedash}
+       {\multicitedelim}%
+     \bibhyperref[\cbx@lastkey]{%
+       \printtext[labelnumber]{\cbx@lastnumber}%
+       \ifdef\cbx@lastprefix
+         {\printtext[labelprefix]{\cbx@lastprefix}}
+         {}}}
+    {}%
+  \setcounter{cbx@tempcnta}{0}%
+  \global\undef\cbx@lastprefix}
+\makeatother
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 % Запретить использование двойных пробелов в конце предложения.
 % Почему: это было актуально только в эпоху печатных машинок.
 \frenchspacing
