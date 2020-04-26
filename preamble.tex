@@ -265,8 +265,6 @@
 \DeclareBibliographyCategory{AuthorSources}
 \addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk}
 
-% Более близкий к ГОСТ-2003 стиль
-\toggletrue{bbx:gostbibliography}
 
 % Зачем: Добавление постфикса "--А" к авторским публикациям
 % https://tex.stackexchange.com/questions/540028/biblatex-add-postfix-to-label
@@ -281,7 +279,9 @@
      {\printtext[labelnumberwidth]{%
         \printfield{labelnumber}%
         \printfield{labelprefix}}}
-     {\setlength{\labelwidth}{\labelnumberwidth}%
+     {\toggletrue{bbx:gostbibliography}% Более близкий к ГОСТ-2003 стиль
+      \renewcommand*{\revsdnamepunct}{\addcomma}% Запятая перед инициалами
+      \setlength{\labelwidth}{\labelnumberwidth}%
       \setlength{\leftmargin}{\labelwidth}%
       \setlength{\labelsep}{\biblabelsep}%
       \addtolength{\leftmargin}{\labelsep}%
