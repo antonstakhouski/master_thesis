@@ -5,7 +5,9 @@
 \addcontentsline{toc}{section}{Список публикаций соискателя}
 
 \newrefcontext[labelprefix=A]
-\printbibliography[
+% \sloppy исправляет выходы за границы страницы
+% https://tex.stackexchange.com/questions/118068/hyphenation-in-bibliography-with-biblatex
+\sloppy\printbibliography[
     category=AuthorSources,
     heading=subbibliography,
     title={Список публикаций соискателя},
@@ -16,7 +18,7 @@
 
 \addcontentsline{toc}{section}{Список использованных источников}
 \newrefcontext
-\printbibliography[
+\sloppy\printbibliography[
     notcategory=AuthorSources,
     heading=subbibliography,
     title={Список использованных источников},
