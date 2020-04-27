@@ -334,6 +334,24 @@
 % Почему: это было актуально только в эпоху печатных машинок.
 \frenchspacing
 
+% Зачем: Окружения для оформления формул
+% Почему: Пункт 4.7 ...Значение каждого символа и числового коэффициента следует
+% давать с новой строки. Первую строку пояснения начинают со слов «где» без
+% двоеточия.
+% Пример использования смотри в theory.tex
+\usepackage{calc}
+\newlength{\lengthWordWhere}
+\settowidth{\lengthWordWhere}{где}
+\newenvironment{explanationx}
+    {%
+    \begin{itemize}[leftmargin=0cm, itemindent=\lengthWordWhere + \labelsep , labelsep=\labelsep]%
+    \renewcommand\labelitemi{}%
+    }
+    {%
+    \end{itemize}
+    }
+
+
 % TODO: За этой линией скрываются макросы, которые возможно пригодятся в
 % будущем. Комментарии и код из предыдущих проектов
 %----------------------------------------------------------------------------------------
@@ -348,27 +366,6 @@
 
 % Зачем: когда в формулах много кириллических символов команда \text{} занимает много места
 \DeclareRobustCommand{\x}[1]{\text{#1}}
-
-
-% Зачем: Окружения для оформления формул
-% Почему: Пункт 2.4.7 требований по оформлению пояснительной записки и специфические требования различных кафедр
-% Пример использования смотри в course_content.tex, строка 5
-\usepackage{calc}
-\newlength{\lengthWordWhere}
-\settowidth{\lengthWordWhere}{где}
-\newenvironment{explanationx}
-    {%
-    %%% Следующие строки определяют специфические требования разных редакций стандартов. Раскоменнтируйте нужную строку
-    %% стандартный абзац, СТП-01 2010
-    %\begin{itemize}[leftmargin=0cm, itemindent=\parindent + \lengthWordWhere + \labelsep, labelsep=\labelsep]
-    %% без отступа, СТП-01 2013
-    \begin{itemize}[leftmargin=0cm, itemindent=\lengthWordWhere + \labelsep , labelsep=\labelsep]%
-    \renewcommand\labelitemi{}%
-    }
-    {%
-    %\\[\parsep]
-    \end{itemize}
-    }
 
 % Зачем: Удобная вёрстка многострочных формул, масштабирующийся текст в формулах, формулы в рамках и др
 \usepackage{amsmath}
