@@ -1,15 +1,21 @@
-PROJNAME = master_thesis
+PROJNAME=master_thesis
+BUILDDIR=build
+FLAGS=-outdir=$(BUILDDIR) \
+  	  -lualatex \
+	  -interaction=nonstopmode \
+	  -shell-escape \
+	  -use-make
 
 
 all: $(PROJNAME).pdf
 
 $(PROJNAME).pdf: $(PROJNAME).tex
-	latexmk -lualatex -interaction=nonstopmode -shell-escape -use-make $<
+	latexmk $(FLAGS) $<
 
 cleanall:
-		latexmk -C
+		latexmk -outdir=$(BUILDDIR) -C
 
 clean:
-		latexmk -c
+		latexmk -outdir=$(BUILDDIR) -c
 
-.PHONY: $(PROJNAME).pdf all clean
+.PHONY: $(PROJNAME).pdf all clean cleanall

@@ -1,13 +1,2 @@
-*.aux
-*.bbl
-*.blg
-*.log
-*.out
-*.toc
 tags
-*.pdf
-*.bak
-*.bcf
-*.xml
-*.fdb_latexmk
-*.fls
+build/
