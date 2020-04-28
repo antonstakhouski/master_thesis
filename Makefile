@@ -1,23 +1,15 @@
-XELATEX = lualatex --shell-escape
-MASTER_THESIS_PDF = master_thesis
-BIBTEX = biber
-RM = rm -f
-GREP = grep
+PROJNAME = master_thesis
 
 
-all: $(MASTER_THESIS_PDF).pdf
+all: $(PROJNAME).pdf
 
+$(PROJNAME).pdf: $(PROJNAME).tex
+	latexmk -lualatex -interaction=nonstopmode -shell-escape -use-make $<
 
-$(MASTER_THESIS_PDF).pdf: *.tex
-	$(XELATEX) $(MASTER_THESIS_PDF)
-	$(BIBTEX) $(MASTER_THESIS_PDF)
-	$(XELATEX) $(MASTER_THESIS_PDF)
-	$(XELATEX) $(MASTER_THESIS_PDF)
+cleanall:
+		latexmk -C
 
-cleanall: clean
-	$(RM)  *.pdf
-
-.PHONY: clean
 clean:
-	$(RM) *.aux *.log *.out *.toc *.gz *.gz\(busy\) *.blg *.bbl $(MASTER_THESIS_PDF).pdf $(TASK_PDF).pdf $(TITLE_PDF).pdf $(PRACTICE_REPORT_PDF).pdf $(COURSE_REPORT_PDF).pdf
+		latexmk -c
 
+.PHONY: $(PROJNAME).pdf all clean

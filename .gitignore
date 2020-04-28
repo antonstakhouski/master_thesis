@@ -9,3 +9,5 @@ tags
 *.bak
 *.bcf
 *.xml
+*.fdb_latexmk
+*.fls
