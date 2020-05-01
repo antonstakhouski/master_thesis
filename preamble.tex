@@ -265,6 +265,9 @@
 \DeclareBibliographyCategory{AuthorSources}
 \addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk}
 
+% Зачем: заменить разделитель между цитатами с ; на ,
+% Почему: так принято. Пример есть в thesisby
+\renewcommand{\multicitedelim}{\addcomma\space}
 
 % Зачем: Добавление постфикса "--А" к авторским публикациям
 % https://tex.stackexchange.com/questions/540028/biblatex-add-postfix-to-label
