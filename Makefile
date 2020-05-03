@@ -1,4 +1,6 @@
 PROJNAME=master_thesis
+ABSTRACT=abstract
+
 BUILDDIR=build
 FLAGS=-outdir=$(BUILDDIR) \
   	  -lualatex \
@@ -7,9 +9,12 @@ FLAGS=-outdir=$(BUILDDIR) \
 	  -use-make
 
 
-all: $(PROJNAME).pdf
+all: $(PROJNAME).pdf $(ABSTRACT).pdf
 
 $(PROJNAME).pdf: $(PROJNAME).tex
+	latexmk $(FLAGS) $<
+
+$(ABSTRACT).pdf: $(ABSTRACT).tex
 	latexmk $(FLAGS) $<
 
 cleanall:
