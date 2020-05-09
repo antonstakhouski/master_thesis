@@ -10,6 +10,36 @@
 \setsansfont{CMU Sans Serif}
 \setmonofont{CMU Typewriter Text}
 
+% Зачем: Пакет для вставки картинок
+% Примечание: Объяснение, зачем final - http://tex.stackexchange.com/questions/11004/why-does-the-image-not-appear
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.jpeg}
+
+% Зачем: Директория в которой будет происходить поиск картинок
+\graphicspath{{figures/}}
+
+% Зачем: Добавление подписей к рисункам. Рисунки нумеруются в пределах главы
+% Почему: Пункт 4.4.8 Номер иллюстрации (таблицы) должен состоять из номера
+% главы и порядкового номера иллюстрации (таблицы), разделенных точкой.
+% Пункт 4.5 Слово «Рисунок», его номер и наименование иллюстрации печатают
+% полужирным шрифтом, причем слово «Рисунок», его номер, а также пояснительные
+% данные к нему – уменьшенным на 1–2 пункта размером шрифта.
+\usepackage[nooneline,figurewithin=section,font=tiny]{caption}
+
+% Зачем: Задание подписей, разделителя и нумерации частей рисунков
+% Почему: Пункт 4.4.8 4.4.8 Иллюстрации и таблицы обозначают соответственно
+% словами «Рисунок» и «Таблица» и нумеруют последовательно в пределах каждой главы.
+\DeclareCaptionLabelFormat{stbfigure}{Рисунок #2}
+\DeclareCaptionLabelFormat{stbtable}{Таблица #2}
+\DeclareCaptionLabelSeparator{stb}{~--~}
+\captionsetup{labelsep=stb}
+\captionsetup[figure]{labelformat=stbfigure,justification=centering,labelfont=bf,textfont=bf,belowskip=-10pt}
+\captionsetup[table]{labelformat=stbtable,justification=raggedright,format=hang,aboveskip=0pt}
+% Зачем: группировка рисунков
+\usepackage{subfig}
+% Зачем: русские индексы для рисунков
+\renewcommand\thesubfigure{\asbuk{subfigure}}
+
 % Тема презентации
 \usetheme{AnnArbor}
 
