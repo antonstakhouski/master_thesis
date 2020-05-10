@@ -124,6 +124,45 @@
 \end{figure}
 \end{frame}
 
+\begin{frame}[t]
+\frametitle{Схема обновления частиц}
+\begin{wrapfigure}{R}{0.5\textwidth}
+	\centering
+	\includegraphics[height=6.2cm]{algorithm}
+    \caption{Схема обновления частиц в кадре}%
+    \label{fig:algorithm}
+\end{wrapfigure}
+В качестве основы алгоритма обновления частиц была использована схема,
+предложенная Вудхаузом в публикации~\cite{Woodhouse} (рис.~\ref{fig:algorithm}).
+
+На шаге обновления позиции также выполняется генерация точек низкого давления
+давления для анимации частиц и расчет траектории частиц.
+\end{frame}
+
+\begin{frame}
+\frametitle{Промежуточные результаты}
+На рисунке~\ref{fig:proto4} представлен промежуточный прототип. В данном
+прототипе все частицы движутся равноускоренно и прямолинейно в сторону эмиссии.
+\begin{figure}[htb]
+	\centering
+    \includegraphics[width=0.35\textwidth]{proto4}
+    \caption{''Наивная'' анимация}%
+    \label{fig:proto4}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Анимация частиц}
+Для анимации частиц был использован алгоритм, предложенный
+в работе~\cite{Somasekaran2005UsingPS}.
+\begin{figure}[htb]
+	\centering
+    \includegraphics[height=5cm]{animationAlgo}
+    \caption{Алгоритм анимации частиц}%
+    \label{fig:animationAlgo}
+\end{figure}
+\end{frame}
+
 \begin{frame}
 \frametitle{Список использованных источников}
 \sloppy\printbibliography[
