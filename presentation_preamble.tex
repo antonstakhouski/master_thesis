@@ -10,6 +10,9 @@
 \setsansfont{CMU Sans Serif}
 \setmonofont{CMU Typewriter Text}
 
+% Обтекание рисунков
+\usepackage{wrapfig}
+
 % Зачем: Пакет для вставки картинок
 % Примечание: Объяснение, зачем final - http://tex.stackexchange.com/questions/11004/why-does-the-image-not-appear
 \usepackage{graphicx}
@@ -39,6 +42,95 @@
 \usepackage{subfig}
 % Зачем: русские индексы для рисунков
 \renewcommand\thesubfigure{\asbuk{subfigure}}
+
+% Зачем: оформление библиографии через biblatex
+\usepackage{csquotes}
+\usepackage[
+    sorting=none,
+    backend=biber,
+    defernumbers=true,
+    bibstyle=gost-numeric-min,
+    citestyle=gost-numeric,
+    autolang=other,
+    ] {biblatex}
+% файл с библиографией
+\addbibresource{bibliography_database.bib}
+
+% Зачем: добавление отдельной категории для авторских публикаций
+% Почему: Пункт 4.9 Сведения об использованных в магистерской диссертации
+% источниках приводятся в разделе «Библиографический список», включающем
+% подразделы «Список использованных источников» и «Список публикаций
+% соискателя».
+\DeclareBibliographyCategory{AuthorSources}
+\addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk}
+
+% Зачем: заменить разделитель между цитатами с ; на ,
+% Почему: так принято. Пример есть в thesisby
+\renewcommand{\multicitedelim}{\addcomma\space}
+
+\setbeamertemplate{bibliography item}{\insertbiblabel}
+
+% % Зачем: Добавление постфикса "--А" к авторским публикациям
+% % https://tex.stackexchange.com/questions/540028/biblatex-add-postfix-to-label
+% % Почему: Пункт 3.9 В списке использованных источников сведения об источниках
+% % нумеруют арабскими цифрами, а в списке публикаций автора – арабскими цифрами,
+% % которые через тире дополняются буквой «А.» («авторская») с точкой.
+% %+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+% \DeclareFieldFormat{labelprefix}{--#1}
+%
+% \defbibenvironment{bibliography}
+%   {\list
+%      {\printtext[labelnumberwidth]{%
+%         \printfield{labelnumber}%
+%         \printfield{labelprefix}}}
+%      {\toggletrue{bbx:gostbibliography}% Более близкий к ГОСТ-2003 стиль
+%       \renewcommand*{\revsdnamepunct}{\addcomma}% Запятая перед инициалами
+%       \setlength{\labelwidth}{\labelnumberwidth}%
+%       \setlength{\leftmargin}{\labelwidth}%
+%       \setlength{\labelsep}{\biblabelsep}%
+%       \addtolength{\leftmargin}{\labelsep}%
+%       \setlength{\itemsep}{\bibitemsep}%
+%       \setlength{\parsep}{\bibparsep}}%
+%       \renewcommand*{\makelabel}[1]{\hss##1}}
+%   {\endlist}
+%   {\item}
+%
+% \makeatletter
+% \renewbibmacro*{cite:comp:end}{%
+%   \usebibmacro{cite:dump}%
+%   \ifnumgreater{\value{cbx@tempcntb}}{-1}
+%     {\multicitedelim}
+%     {}%
+%   \printtext[bibhyperref]{%
+%     \printfield{labelnumber}%
+%     \printfield{labelprefix}}}
+%
+% \renewbibmacro*{cite:comp:inset}{%
+%   \usebibmacro{cite:dump}%
+%   \ifnumgreater{\value{cbx@tempcntb}}{-1}
+%     {\multicitedelim}
+%     {}%
+%   \printtext[bibhyperref]{%
+%     \printfield{labelnumber}%
+%     \printfield{labelprefix}%
+%     \printfield{entrysetcount}}%
+%   \setcounter{cbx@tempcntb}{-1}}
+%
+% \renewbibmacro*{cite:dump}{%
+%   \ifnumgreater{\value{cbx@tempcnta}}{0}
+%     {\ifnumgreater{\value{cbx@tempcnta}}{1}
+%        {\bibrangedash}
+%        {\multicitedelim}%
+%      \bibhyperref[\cbx@lastkey]{%
+%        \printtext[labelnumber]{\cbx@lastnumber}%
+%        \ifdef\cbx@lastprefix
+%          {\printtext[labelprefix]{\cbx@lastprefix}}
+%          {}}}
+%     {}%
+%   \setcounter{cbx@tempcnta}{0}%
+%   \global\undef\cbx@lastprefix}
+% \makeatother
+%+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 % Тема презентации
 \usetheme{AnnArbor}
