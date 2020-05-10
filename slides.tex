@@ -164,6 +164,36 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{Реализация анимации}
+Реализованная анимация позволила добиться реалистичного движения языка пламени.
+\begin{figure}[htb]
+	\centering
+    \includegraphics[height=5.5cm]{protoFinal}
+    \caption{Реализация анимации частиц}%
+    \label{fig:protoFinal}
+\end{figure}
+\end{frame}
+
+\begin{frame}[t]
+\frametitle{Текстурные сплэты}
+\begin{wrapfigure}{r}{0.3\textwidth}
+	\centering
+    \includegraphics[height=5.5cm]{simSplats}
+    \caption{Использование текстурных сплэтов для рендеринга частиц}%
+    \label{fig:protoFinal}
+\end{wrapfigure}
+Для улучшения рендеринга можно использовать текстурные сплэты --- текстуры с
+альфа-каналом, которые накладываются друг на друга. Для увеличения
+стохастичности следует чередовать различные текстуры.
+
+Недостатки метода:
+\begin{itemize}
+    \item необходимо ориентировать полигоны на зрителя;
+    \item нереалистичные результаты при наблюдении сверху.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{Список использованных источников}
 \sloppy\printbibliography[
     notcategory=AuthorSources,
