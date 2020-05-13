@@ -264,7 +264,7 @@
 % подразделы «Список использованных источников» и «Список публикаций
 % соискателя».
 \DeclareBibliographyCategory{AuthorSources}
-\addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk}
+\addtocategory{AuthorSources}{mol_uch,55_sntk,56_sntk,56_sntk_vmip}
 
 % Зачем: заменить разделитель между цитатами с ; на ,
 % Почему: так принято. Пример есть в thesisby
@@ -481,9 +481,9 @@
 }
 \makeatother
 
-\pretocmd{\section}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
-\pretocmd{\section}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
-% \pretocmd{\section}{\addtocounter{totequation}{\value{equation}}\setcounter{equation}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{totfigures}{\value{figure}}\setcounter{figure}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{tottables}{\value{table}}\setcounter{table}{0}}{}{}
+\pretocmd{\chapter}{\addtocounter{totequation}{\value{equation}}\setcounter{equation}{0}}{}{}
 \pretocmd{\bibitem}{\addtocounter{totreferences}{1}}{}{}
 
 
