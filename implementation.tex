@@ -226,24 +226,27 @@
 \end{table}
 
 Значения атрибутов частиц рассчитываются по формулам
-(\ref{eq:life},\ref{eq:scale}).
-\begin{equation}
-  \label{eq:life}
-  \text{Life}_{t + \Delta{t}} = \text{Life}_{t} - \Delta{t}
-\end{equation}
-\vspace{-1em}
-\begin{equation}
-  \label{eq:scale}
-  \text{Scale}_{t + \Delta{t}} = \text{Scale}_{{t}_{0}} \cdot
-  \frac{\text{Life}_{t + 1}}{\text{Life}_{{t}_{0}}}
-\end{equation}
-\begin{equation}
-  \label{eq:color}
-  \text{Color}_{t + \Delta{t}} = \frac{\text{Life}_{t + 1}}{\text{Life}_{{t}_{0}}}
-\end{equation}
+(\ref{eq:life}--\ref{eq:color}).
+\begin{align}
+    \label{eq:life}
+    \text{Life}_{t + \Delta{t}} &= \text{Life}_{t} - \Delta{t} \\
+    \label{eq:scale}
+    \text{Scale}_{t + \Delta{t}} &= \text{Scale}_{{t}_{0}} \cdot
+    \frac{\text{Life}_{t + \Delta{t}}}{\text{Life}_{{t}_{0}}} \\
+    \label{eq:color}
+    \text{Color}_{t + \Delta{t}} &= \frac{\text{Life}_{t + 1}}{\text{Life}_{{t}_{0}}}
+\end{align}
 \begin{explanationx}
-    \item [где] $\vec{a}$ --- ускорение частицы;
-    \item $\vec{\text{v}_\text{0}}$ --- начальная скорость частицы.
+    \item [где] $\text{Life}_{t + \Delta{t}}$ --- значение энергии (оставшееся
+        время жизни) частицы в следующем кадре;
+    \item $\text{Life}_{t}$ --- текущее значение энергии частицы;
+    \item $\Delta{t}$ --- величина интервала между кадрами;
+    \item $\text{Scale}_{t + \Delta{t}}$ --- размер (коэффициент
+        масштабирования) частицы  в следующем кадре;
+    \item $\text{Scale}_{{t}_{0}}$ --- начальное значение размера частицы;
+    \item $\text{Life}_{{t}_{0}}$ --- начальное значение энергии частицы;
+    \item $\text{Color}_{t + \Delta{t}}$ --- значение цвета (интенсивность и
+        прозрачность) в следующем кадре.
 \end{explanationx}
 
 Первый прототип системы представлен на рисунке~\ref{fig:firstProto}.
