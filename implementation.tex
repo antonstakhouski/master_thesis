@@ -225,6 +225,27 @@
 \end{tabular}
 \end{table}
 
+Значения атрибутов частиц рассчитываются по формулам
+(\ref{eq:life},\ref{eq:scale}).
+\begin{equation}
+  \label{eq:life}
+  \text{Life}_{t + \Delta{t}} = \text{Life}_{t} - \Delta{t}
+\end{equation}
+\vspace{-1em}
+\begin{equation}
+  \label{eq:scale}
+  \text{Scale}_{t + \Delta{t}} = \text{Scale}_{{t}_{0}} \cdot
+  \frac{\text{Life}_{t + 1}}{\text{Life}_{{t}_{0}}}
+\end{equation}
+\begin{equation}
+  \label{eq:color}
+  \text{Color}_{t + \Delta{t}} = \frac{\text{Life}_{t + 1}}{\text{Life}_{{t}_{0}}}
+\end{equation}
+\begin{explanationx}
+    \item [где] $\vec{a}$ --- ускорение частицы;
+    \item $\vec{\text{v}_\text{0}}$ --- начальная скорость частицы.
+\end{explanationx}
+
 Первый прототип системы представлен на рисунке~\ref{fig:firstProto}.
 \begin{figure}[htb]
 	\centering
@@ -396,8 +417,8 @@ $O(n \log n) + O(m) \cdot O(\log_{2} n)$.
 предложенных в~\cite{LearnOGL}. Разработанный симулятор написан на языке C++ с
 использованием программного интерфейса OpenGL 4.5. Программа была скомпилирована
 с помощью компилятора GNU G++ версии 8.3.0. Окружение симуляции использует
-операционную систему Debian 10 Buster, процессор Intel Core i5-5200U с частотой
-2.7GHz, 8 ГБ оперативной памяти и видеокарту Intel(R) HD Graphics 5500.
+операционную систему Debian 10 Buster, процессор Intel Core i5--5200U с частотой
+2.7GHz, 8 ГБ оперативной памяти и видеокарту Intel HD Graphics 5500.
 
 В анимации изображения быстро сменяют друг друга на экране, при этом их их
 содержание изменяется незначительно. Данный эффект используется для того, чтобы
