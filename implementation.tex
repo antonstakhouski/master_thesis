@@ -282,7 +282,7 @@
 рисунке~\ref{fig:proto2}.
 \begin{figure}[htb]
 	\centering
-    \includegraphics[height=8cm]{proto2}
+    \includegraphics[height=10cm]{proto2}
     \caption{Использование инстансинга для отрисовки частиц}%
     \label{fig:proto2}
 \end{figure}
@@ -337,15 +337,12 @@
 скорость частицы определяется вектором эмиссии конкретного эмиттера. Для расчета
 следующего положения частицы $\vec{p}(t + \Delta{t})$, используется следующие
 уравнения (\ref{eq:position},~\ref{eq:velocity}).
-\begin{equation}
+\begin{align}
   \label{eq:position}
-  \vec{p}(t + \Delta{t}) = \vec{p}(t) + \vec{v}(t) \cdot \Delta{t}
-\end{equation}
-\vspace{-1em}
-\begin{equation}
+  \vec{p}(t + \Delta{t}) &= \vec{p}(t) + \vec{v}(t) \cdot \Delta{t} \\
   \label{eq:velocity}
-  \vec{v}(t + \Delta{t}) = \vec{v}(t) + \vec{a}
-\end{equation}
+  \vec{v}(t + \Delta{t}) &= \vec{v}(t) + \vec{a}
+\end{align}
 \begin{explanationx}
     \item [где] $\vec{p}(t + \Delta{t})$ --- координаты частицы в следующий
         момент времени;
@@ -362,11 +359,11 @@
 (\ref{eq:accelearation}).
 \begin{equation}
   \label{eq:accelearation}
-  \vec{a} = 0,02 \cdot \vec{\text{v}_\text{0}}
+  \vec{a} = 0,02 \cdot \vec{v}_{0}
 \end{equation}
 \begin{explanationx}
     \item [где] $\vec{a}$ --- ускорение частицы;
-    \item $\vec{\text{v}_\text{0}}$ --- начальная скорость частицы.
+    \item $\vec{v}_{0}$ --- начальная скорость частицы.
 \end{explanationx}
 
 Как можно заметить, описанные выше уравнения описывают движение частиц как
