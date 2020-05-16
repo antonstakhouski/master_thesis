@@ -387,17 +387,18 @@
     \label{eq:ns_velocity}
     \frac{\partial{\vec{v}}}{\partial{t}} &= -(\vec{v} \cdot \nabla)\vec{v} + \nu \nabla ^ 2 \vec{v} + \vec{f} \\
     \label{eq:ns_density}
-    \frac{\partial{\rho}}{\partial{t}} &= -(\vec{v} \cdot \nabla)\rho + \kappa \nabla ^ 2 \rho + P
+    \frac{\partial{\rho}}{\partial{t}} &= -(\vec{v} \cdot \nabla)\rho + \kappa \nabla ^ 2 \rho + p
 \end{align}
 \begin{explanationx}
-    \item [где] $\vec{v} = (v ^ 1, \ldots, v ^ n)$ --- векторное поле скорости;
+    \item [где] $\vec{v} = (v ^ 1, \ldots, v ^ n)$ --- векторное поле скорости
+        частиц;
     \item $t$ --- время;
     \item $\nabla$ --- оператор набла;
     \item $\nu$ --- коэффициент кинематической вязкости;
     \item $\vec{f}$ --- векторное поле массовых сил;
-    \item $\rho$ --- плотность;
+    \item $\rho$ --- плотность частиц;
     \item $\kappa$ --- коэффициент динамической вязкости (сдвиговая вязкость);
-    \item $P$ --- давление.
+    \item $p$ --- давление.
 \end{explanationx}
 
 С помощью уравнения~\ref{eq:ns_velocity}, имея текущее состояние скорости и
