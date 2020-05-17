@@ -1,9 +1,25 @@
 \addcontentsline{toc}{part}{Приложение Слайды презентации}
 
-\hfill
-\begin{raggedleft}
-    \begin{minipage}{5cm}
-        ПРИЛОЖЕНИЕ \\
-        Слайды презентации
-    \end{minipage}
-\end{raggedleft}
+% \includepdf позволяет включить в результирующий pdf документ часть другого pdf документа, сделанного
+% например не с помощью TeX. Бывает полезно, если какие-то диаграммны нарисованы, например, с помощью
+% Microsoft Office и сохранены в pdf.
+\includepdf[pages=1-4,
+            pagecommand={
+            \thispagestyle{plain}
+            \hfill
+            \begin{raggedleft}
+                \begin{minipage}{5cm}
+                    ПРИЛОЖЕНИЕ \\
+                    Слайды презентации
+                \end{minipage}
+            \end{raggedleft}
+            },
+            nup=2x2,landscape=true,frame=true,
+            noautoscale=true,scale=0.85,
+            offset=1.0cm 0.0cm,delta=5mm 5mm]{build/presentation.pdf}
+
+\includepdf[pages=5-last,
+            pagecommand={\thispagestyle{plain}},
+            nup=2x2,landscape=true,frame=true,
+            noautoscale=true,scale=0.85,
+            offset=1.0cm 0.0cm,delta=5mm 5mm]{build/presentation.pdf}
