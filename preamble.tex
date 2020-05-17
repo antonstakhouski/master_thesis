@@ -174,7 +174,7 @@
 \makeatletter
 \let\oldcontentsline\contentsline
 \def\contentsline#1#2{%
-  \expandafter\ifx\csname l@#1\endcsname\l@part
+  \expandafter\ifx\csname l@#1\endcsname\l@chapter
     \expandafter\@firstoftwo
   \else
     \expandafter\@secondoftwo
@@ -182,16 +182,7 @@
   {%
     \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
   }{%
-      \expandafter\ifx\csname l@#1\endcsname\l@chapter
-        \expandafter\@firstoftwo
-      \else
-        \expandafter\@secondoftwo
-      \fi
-      {%
-        \oldcontentsline{#1}{\MakeTextUppercase{#2}}%
-      }{%
-        \oldcontentsline{#1}{#2}%
-      }%
+    \oldcontentsline{#1}{#2}%
   }%
 }
 \makeatother
