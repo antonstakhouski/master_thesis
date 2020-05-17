@@ -47,9 +47,9 @@
 \section{Анализ литературных источников}
 \begin{frame}
 \frametitle{Анализ методов симуляции огня}
-В 2011 году Чжао Хуэй и его коллеги представили статью~\cite{survey}, в которой
-авторы проанализировали большое количество методов симуляции огня и предложили
-свою классификацию методов.
+В 2011 году Чжао Хуэй и его коллеги представили статью ''Realistic Fire
+Simulation: A Survey'', в которой авторы проанализировали большое количество
+методов симуляции огня и предложили свою классификацию методов.
 
 Результаты данного исследования можно увидеть в
 таблице~\ref{table:algoAnalsysis}.
@@ -64,11 +64,11 @@
 \begin{frame}
 \frametitle{Структура симуляции}
 В общем случае задача симуляции огня может быть разбита на три
-непересекающихся подзадачи~\cite{Perry94synthesizingflames}:
+непересекающихся подзадачи:
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
     \includegraphics[width=0.27\textwidth]{simStages}
-    \caption{Структура симуляции, предложенная в~\cite{realistic_sim}}%
+    \caption{Структура симуляции}%
     \label{fig:simStages}
 \end{wrapfigure}
 \begin{itemize}
@@ -76,8 +76,7 @@
 	\item анимация;
 	\item визуализация.
 \end{itemize}
-Альтернативная схема была предложена Филиппом Боденом в
-работе~\cite{realistic_sim} (рис.~\ref{fig:simStages}).
+Альтернативная схема была предложена Филиппом Боденом (рис.~\ref{fig:simStages}).
 \end{frame}
 
 \section{Техническое решение}
@@ -96,26 +95,9 @@
 
 \subsection{Компоненты решения}
 \begin{frame}
-\frametitle{Моделирование}
-В качестве модели системы была выбрана система частиц, впервые предложенная в
-Уильямом Томасом Ривзом в 1983 году в работе~\cite{reewes1983}.
-
-В качестве основы для симулятора была использована система для генерации частиц
-в 2D игре, предложенная в работе~\cite{LearnOGL}. В систему были внесены
-следующие оптимизации:
-\begin{itemize}
-    \item Система полностью адаптирована для работы в 3D пространстве.
-    \item Алгоритмы рендеринга были оптимизированы, что позволило увеличить
-        число частиц в системе с нескольких сотен до десятков тысяч.
-    \item Увеличено количество атрибутов частиц.
-\end{itemize}
-\end{frame}
-
-\begin{frame}
 \frametitle{Структура симуляции}
-В качестве структуры симулятора была выбрана схема, предложенная
-в работе~\cite{Somasekaran2005UsingPS}. Общая структура симулятора представлена
-на рисунке~\ref{fig:simStructure}.
+В качестве структуры симулятора была использована следующая схема,
+представленная на рисунке~\ref{fig:simStructure}.
 \begin{figure}[htb]
 	\centering
 	\includegraphics[width=\textwidth]{Structure}
@@ -133,7 +115,7 @@
     \label{fig:algorithm}
 \end{wrapfigure}
 В качестве основы алгоритма обновления частиц была использована схема,
-предложенная Вудхаузом в публикации~\cite{Woodhouse} (рис.~\ref{fig:algorithm}).
+предложенная в работе Фрэнка Вудхауза (рис.~\ref{fig:algorithm}).
 
 На шаге обновления позиции также выполняется генерация точек низкого давления
 давления для анимации частиц и расчет траектории частиц.
@@ -154,7 +136,7 @@
 \begin{frame}
 \frametitle{Анимация частиц}
 Для анимации частиц был использован алгоритм, предложенный
-в работе~\cite{Somasekaran2005UsingPS}.
+в работе ''Using Particle Systems to Simulate Real-Time Fire''.
 \begin{figure}[htb]
 	\centering
     \includegraphics[height=5cm]{animationAlgo}
@@ -183,7 +165,7 @@
     \label{fig:protoSplats}
 \end{wrapfigure}
 Для улучшения рендеринга можно использовать текстурные сплэты --- текстуры с
-альфа-каналом, которые накладываются друг на друга~\cite{FireSplats}.Для
+альфа-каналом, которые накладываются друг на друга. Для
 увеличения стохастичности следует чередовать различные текстуры.
 
 Недостатки метода:
@@ -226,15 +208,11 @@ Intel(R) HD Graphics 5500.
 \end{frame}
 
 \begin{frame}[t,allowframebreaks]
-\frametitle{Список использованных источников}
+\frametitle{Список публикаций соискателя}
+\nocite{*}
 \sloppy\printbibliography[
-    notcategory=AuthorSources,
+    category=AuthorSources,
     heading=none,
     resetnumbers,
 ]
 \end{frame}
-
-% \begin{frame}
-% \frametitle{Outline}
-% \tableofcontents
-% \end{frame}
