@@ -1,6 +1,7 @@
 PROJNAME=master_thesis
 ABSTRACT=abstract
 PRESENTATION=presentation
+TITLEPAGE=titlepage
 
 BUILDDIR=build
 FLAGS=-outdir=$(BUILDDIR) \
@@ -10,7 +11,7 @@ FLAGS=-outdir=$(BUILDDIR) \
 	  -use-make
 
 
-all: $(PROJNAME).pdf $(ABSTRACT).pdf $(PRESENTATION).pdf
+all: $(PROJNAME).pdf $(ABSTRACT).pdf $(PRESENTATION).pdf $(TITLEPAGE).pdf
 
 $(PROJNAME).pdf: $(PROJNAME).tex
 	latexmk $(FLAGS) $<
@@ -21,10 +22,13 @@ $(ABSTRACT).pdf: $(ABSTRACT).tex
 $(PRESENTATION).pdf: $(PRESENTATION).tex
 	latexmk $(FLAGS) $<
 
+$(TITLEPAGE).pdf: $(TITLEPAGE).tex
+	latexmk $(FLAGS) $<
+
 cleanall:
 		latexmk -outdir=$(BUILDDIR) -C
 
 clean:
 		latexmk -outdir=$(BUILDDIR) -c
 
-.PHONY: $(PROJNAME).pdf $(ABSTRACT).pdf $(PRESENTATION).pdf all clean cleanall
+.PHONY: $(PROJNAME).pdf $(ABSTRACT).pdf $(PRESENTATION).pdf $(TITLEPAGE).pdf all clean cleanall
