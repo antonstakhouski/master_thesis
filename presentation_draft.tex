@@ -1,0 +1,11 @@
+\input{preamble}
+
+\begin{document}
+
+\includepdf[pages=1-last,
+            pagecommand={\thispagestyle{plain}},
+            nup=2x2,landscape=true,frame=true,
+            noautoscale=true,scale=0.95,
+            delta=5mm 5mm]{build/presentation.pdf}
+
+\end{document}
