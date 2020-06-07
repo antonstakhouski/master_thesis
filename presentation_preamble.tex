@@ -145,3 +145,32 @@
 \date{\today}
 
 
+% Зачем: Удобная вёрстка многострочных формул, масштабирующийся текст в формулах, формулы в рамках и др
+\usepackage{amsmath}
+
+% Зачем: Поддержка ажурного и готического шрифтов
+\usepackage{amsfonts}
+
+% Зачем: amsfonts + несколько сотен дополнительных математических символов
+\usepackage{amssymb}
+
+% Зачем: Окружения для оформления формул
+% Почему: Пункт 4.7 ...Значение каждого символа и числового коэффициента следует
+% давать с новой строки. Первую строку пояснения начинают со слов «где» без
+% двоеточия.
+% Пример использования смотри в theory.tex
+\usepackage{enumitem}
+\usepackage{calc}
+\newlength{\lengthWordWhere}
+\settowidth{\lengthWordWhere}{где}
+\newenvironment{explanationx}
+    {%
+    \begin{itemize}[leftmargin=0cm, itemindent=\lengthWordWhere + \labelsep , labelsep=\labelsep, label={}]%
+    }
+    {%
+    \end{itemize}
+    }
+
+\setitemize{label=\usebeamerfont*{itemize item}%
+  \usebeamercolor[fg]{itemize item}
+  \usebeamertemplate{itemize item}}

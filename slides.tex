@@ -95,25 +95,30 @@
 
 \begin{frame}
 \frametitle{Анимация частиц}
-Для анимации частиц был использован алгоритм, предложенный
-в работе ''Using Particle Systems to Simulate Real-Time Fire''.
-\begin{figure}[htb]
+\begin{figure}
 	\centering
-    \includegraphics[height=5cm]{animationAlgo}
+    \includegraphics[width=0.75\textwidth]{animationAlgo}
     \caption{Алгоритм анимации частиц}%
     \label{fig:animationAlgo}
 \end{figure}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Реализация анимации}
-Реализованная анимация позволила добиться реалистичного движения языка пламени.
-\begin{figure}[htb]
+\begin{wrapfigure}{r}{0.3\textwidth}
 	\centering
-    \includegraphics[height=5.5cm]{protoFinal}
+    \includegraphics[width=0.3\textwidth]{protoFinal}
     \caption{Реализация анимации частиц}%
     \label{fig:protoFinal}
-\end{figure}
+\end{wrapfigure}
+Сложность алгоритма:
+\begin{equation}
+    O(n \log n) + O(m) \cdot O(\log_{2} n)
+\end{equation}
+\begin{explanationx}
+    \item [где] $n$ --- количество точек низкого давления;
+    \item $m$ --- количество частиц.
+\end{explanationx}
 \end{frame}
 
 \begin{frame}[t]
