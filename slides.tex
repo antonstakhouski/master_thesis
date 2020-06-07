@@ -5,9 +5,7 @@
 \section{Общая характеристика работы}
 
 \begin{frame}
-\frametitle{Проблема}
-В приложениях реального времени существует потребность в симуляции огня
-(рис.~\ref{fig:doomEternal}).
+\frametitle{Требования и ограничения}
 
 Требования и ограничения, предъявляемые к решению:
 \begin{wrapfigure}{r}{0.5\textwidth}
@@ -35,11 +33,11 @@
 \end{frame}
 
 \section{Теория динамической симуляции огня}
-\begin{frame}
+\begin{frame}[t]
 \frametitle{Структура симуляции}
 \begin{wrapfigure}{r}{0.5\textwidth}
 	\centering
-    \includegraphics[width=0.32\textwidth]{simStages}
+    \includegraphics[width=0.4\textwidth]{simStages}
     \caption{Структура симуляции}%
     \label{fig:simStages}
 \end{wrapfigure}
@@ -129,9 +127,12 @@
     \caption{Использование текстурных сплэтов для рендеринга частиц}%
     \label{fig:protoSplats}
 \end{wrapfigure}
-Для улучшения рендеринга можно использовать текстурные сплэты --- текстуры с
-альфа-каналом, которые накладываются друг на друга. Для
-увеличения стохастичности следует чередовать различные текстуры.
+Преимущества метода:
+\begin{itemize}
+    \item оптимизация количества частиц;
+    \item увеличение детализации за счет текстур;
+    \item более плавная форма пламени.
+\end{itemize}
 
 Недостатки метода:
 \begin{itemize}
@@ -143,12 +144,14 @@
 \subsection{Экспериментальные результаты}
 \begin{frame}
 \frametitle{Производительность системы}
-Одним из важных экспериментов является поиск максимального количества частиц в
-системе, при котором сохраняется приемлемая частота кадров
-(таблица~\ref{table:amountBench}).
-Окружение симуляции использует операционную систему Debian 10 Buster, процессор
-Intel Core i5-5200U с частотой 2.7GHz, 8 ГБ оперативной памяти и видеокарту
-Intel(R) HD Graphics 5500.
+Тестовая среда:
+\begin{itemize}
+    \item \textbf{ЦП}: Intel Core i5--5200U 2.7ГГц;
+    \item \textbf{ГП}: Intel HD Graphics 5500;
+    \item \textbf{ОЗУ}: 8 ГБ;
+    \item \textbf{ОС}:Debian 10 Buster.
+\end{itemize}
+
 \begin{table}[htb]
 \caption{Зависимость частоты кадров от количества частиц в системе}%
 \label{table:amountBench}
@@ -174,24 +177,29 @@ Intel(R) HD Graphics 5500.
 
 \begin{frame}[allowframebreaks]
 \frametitle{Сравнение с аналогами}
-В 2018 году Юзеф Хладки и Роман Журикович представили работу ''Fire Simulation
+''Fire Simulation
 in 3D Computer Animation with Turbulence Dynamics including Fire Separation and
-Profile Modeling'' (рис.~\ref{fig:turbulence}).
+Profile Modeling'' (2018 год).
 \begin{figure}[htb]
 	\centering
-    \includegraphics[width=0.5\textwidth]{turbulence}
+    \includegraphics[width=0.7\textwidth]{turbulence}
     \caption{Результаты работы системы}%
     \label{fig:turbulence}
 \end{figure}
 
-Симуляция выполнялась на ноутбуке с процессором Intel Core i3 350m с частотой
-2.26ГГц (2 ядра), 4ГБ ОЗУ и видеокартой ATI Radeon 5145 с 512МБ ОЗУ.
+Тестовая среда:
+\begin{itemize}
+    \item \textbf{ЦП}: Intel Core i3 350m 2.26ГГц;
+    \item \textbf{ГП}: ATI Radeon 5145;
+    \item \textbf{ОЗУ}: 4 ГБ.
+\end{itemize}
 
-В проведенном автором эксперименте использовался один эмиттер, содержащий один
-сплайн. Сплайн содержал до 15 сегментов, содержащих по 100 частиц каждый, таким
-образом в системе находилось одновременно не более 1500 частиц. Такая
-конфигурация позволяла выполнять симуляцию со скоростью более 30 кадров в
-секунду.
+Эксперимент:
+\begin{itemize}
+    \item 1 сплайн
+    \item 15 сегментов в сплайне
+    \item 30+ кадров в секунду.
+\end{itemize}
 \end{frame}
 
 \section{Заключение}
