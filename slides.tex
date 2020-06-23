@@ -157,6 +157,34 @@
 \end{frame}
 
 \subsection{Экспериментальные результаты}
+\begin{frame}[allowframebreaks]
+\frametitle{Сравнение с аналогами}
+''Fire Simulation
+in 3D Computer Animation with Turbulence Dynamics including Fire Separation and
+Profile Modeling'' (2018 год).
+\begin{figure}[htb]
+	\centering
+    \includegraphics[width=0.7\textwidth]{turbulence}
+    \caption{Результаты работы системы}%
+    \label{fig:turbulence}
+\end{figure}
+
+Тестовая среда:
+\begin{itemize}
+    \item \textbf{ЦП}: Intel Core i3 350m 2.26ГГц;
+    \item \textbf{ГП}: ATI Radeon 5145;
+    \item \textbf{ОЗУ}: 4 ГБ.
+\end{itemize}
+
+Эксперимент:
+\begin{itemize}
+    \item 1 сплайн;
+    \item 15 сегментов в сплайне;
+    \item по 100 частиц в каждом сегменте;
+    \item 30+ кадров в секунду.
+\end{itemize}
+\end{frame}
+
 \begin{frame}
 \frametitle{Производительность системы}
 Тестовая среда:
@@ -188,33 +216,6 @@
     \hline
 \end{tabular}
 \end{table}
-\end{frame}
-
-\begin{frame}[allowframebreaks]
-\frametitle{Сравнение с аналогами}
-''Fire Simulation
-in 3D Computer Animation with Turbulence Dynamics including Fire Separation and
-Profile Modeling'' (2018 год).
-\begin{figure}[htb]
-	\centering
-    \includegraphics[width=0.7\textwidth]{turbulence}
-    \caption{Результаты работы системы}%
-    \label{fig:turbulence}
-\end{figure}
-
-Тестовая среда:
-\begin{itemize}
-    \item \textbf{ЦП}: Intel Core i3 350m 2.26ГГц;
-    \item \textbf{ГП}: ATI Radeon 5145;
-    \item \textbf{ОЗУ}: 4 ГБ.
-\end{itemize}
-
-Эксперимент:
-\begin{itemize}
-    \item 1 сплайн
-    \item 15 сегментов в сплайне
-    \item 30+ кадров в секунду.
-\end{itemize}
 \end{frame}
 
 \section{Заключение}
