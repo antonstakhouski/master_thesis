@@ -12,9 +12,9 @@ FLAGS=-outdir=$(BUILDDIR) \
 	  -use-make
 
 
-all: $(PROJNAME).pdf $(ABSTRACT).pdf $(PRESENTATION).pdf
+all: $(PRESENTATION).pdf $(PROJNAME).pdf $(ABSTRACT).pdf
 
-$(PROJNAME).pdf: $(PROJNAME).tex
+$(PROJNAME).pdf: $(PROJNAME).tex $(PRESENTATION).pdf
 	latexmk $(FLAGS) $<
 
 $(ABSTRACT).pdf: $(ABSTRACT).tex
